@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
-DOTENV_FILE = "../.env"
+DOTENV_FILE = os.path.join(os.path.dirname(__file__), "../../.env")
 
 # Check if the file exists
 if not os.path.isfile(DOTENV_FILE):
