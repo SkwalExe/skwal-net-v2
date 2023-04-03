@@ -7,7 +7,7 @@
 mv maintenance/maintenance.html maintenance/ACTIVE/maintenance.html
 git reset --hard HEAD
 git clean -f -d
-git pull origin master
+git pull origin main
 sleep 5
 mv maintenance/ACTIVE/maintenance.html maintenance/maintenance.html
 
