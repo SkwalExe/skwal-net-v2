@@ -12,7 +12,7 @@ git reset --hard HEAD
 git clean -f -d
 git pull origin main
 
-rm -f maintenance/ACTIVE
 echo Disabling maintenance mode
 sleep 5
+rm -f maintenance/ACTIVE
 echo Done!
