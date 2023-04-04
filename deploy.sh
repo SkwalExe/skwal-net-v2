@@ -20,7 +20,7 @@ git clean -f -d
 git pull origin main
 
 echo Disabling maintenance mode
-sudo systemctl stop gunicorn
+sudo systemctl start gunicorn
 sleep 5
 rm -f hooks/maintenance
 echo Done!
