@@ -10,7 +10,7 @@ then
   exit 1 
 fi
 
-touch maintenance/ACTIVE
+touch hooks/maintenance 
 echo Enabling maintenance mode
 sleep 5
 
@@ -20,5 +20,5 @@ git pull origin main
 
 echo Disabling maintenance mode
 sleep 5
-rm -f maintenance/ACTIVE
+rm -f hooks/maintenance
 echo Done!
