@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 # This script will put the server under
 # maintenance mode, pull the latest changes
 # from the git repository, and then bring the
