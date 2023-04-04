@@ -1,5 +1,0 @@
-The NGINX server will automatically enable 
-the mainteance mode when the maintenance.html
-file is present in the ACTIVE directory.
-
-This will only be used in production mode.
