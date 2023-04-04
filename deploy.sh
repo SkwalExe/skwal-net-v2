@@ -11,6 +11,7 @@ then
 fi
 
 touch hooks/maintenance 
+sudo systemctl stop gunicorn
 echo Enabling maintenance mode
 sleep 5
 
@@ -19,6 +20,7 @@ git clean -f -d
 git pull origin main
 
 echo Disabling maintenance mode
+sudo systemctl stop gunicorn
 sleep 5
 rm -f hooks/maintenance
 echo Done!
