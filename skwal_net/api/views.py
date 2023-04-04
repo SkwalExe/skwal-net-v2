@@ -3,6 +3,7 @@ import os
 import hashlib
 import hmac
 from django.views.decorators.csrf import csrf_exempt
+import json
 
 
 def verify_signature(payload_body, signature_header):
@@ -28,8 +29,11 @@ def redeploy(request):
 
     if not verify_signature(data, signature):
         return HttpResponse(status=403)
-    file = open(os.path.join(os.path.dirname(
-        __file__), "../../hooks/redeploy"), "w")
-    file.write("Redeploy")
-    file.close()
+
+    payload = json.loads(data)
+    if payload["ref"] == "refs/heads/main":
+        file = open(os.path.join(os.path.dirname(
+            __file__), "../../hooks/redeploy"), "w")
+        file.write("Redeploy")
+        file.close()
     return HttpResponse(status=200)
