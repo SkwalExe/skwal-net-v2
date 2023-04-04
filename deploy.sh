@@ -21,6 +21,6 @@ git pull origin main
 
 echo Disabling maintenance mode
 sudo systemctl start gunicorn
-sleep 5
+sleep 10
 rm -f hooks/maintenance
 echo Done!
