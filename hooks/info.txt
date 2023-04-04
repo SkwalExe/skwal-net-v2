@@ -1,0 +1,7 @@
+This directory will contain hooks file.
+Hooks file are files that, when present, 
+will fire certain actions.
+Hooks are only used in production.
+
+The `maintenance` file will put the server in maintenance mode
+The `redeploy` file will make the server fetch new changes from the repo
