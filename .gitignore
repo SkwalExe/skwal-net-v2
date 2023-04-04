@@ -1,5 +1,7 @@
-# maintenance mode enabler file
-ACTIVE
+# hooks
+hooks/*
+# but not hooks/info.txt
+!hooks/info.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
