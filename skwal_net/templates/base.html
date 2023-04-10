@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 <html>
 
@@ -5,12 +7,18 @@
     <meta charset="utf-8">
     <title>{% block page_title %}skwal.net{% endblock page_title %}</title>
     <meta name="description" content="{% block page_description %}skwal.net{% endblock page_description %}">
+
+    <link rel="stylesheet" href="{% static 'css/colors.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+    {% for stylesheet in stylesheets %}
+        <link rel="stylesheet" href="/static/css/{{ stylesheet }}.css"> 
+    {% endfor %}
+
 </head>
 
 <body>
     <p>Base template</p>
-    {% block body %}
-    {% endblock body %}
+    {% block body %} {% endblock body %}
 </body>
 
 </html>
