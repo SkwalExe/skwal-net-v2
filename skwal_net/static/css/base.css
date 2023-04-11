@@ -107,6 +107,9 @@ h1.box {
         margin-top: 20px;
         min-width: 100%;
     }
+    #page-body-container {
+        padding: 20px;
+    }
 }
 
 i {
