@@ -6,9 +6,23 @@ body {
     font-family: "Poppins", "Roboto", "Noto", sans-serif;
 }
 
+body {
+    padding-top: 70px;
+}
+
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
     outline: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-color)
+}
+
+*[href],
+*[_href] {
+    cursor: pointer;
 }

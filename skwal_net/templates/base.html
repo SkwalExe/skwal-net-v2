@@ -10,6 +10,9 @@
 
     <link rel="stylesheet" href="{% static 'css/colors.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toasteur@0.5.0/dist/themes/toasteur-default.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toultip@v0.2.1/dist/themes/toultip-default.min.css">
     {% for stylesheet in stylesheets %}
         <link rel="stylesheet" href="/static/css/{{ stylesheet }}.css"> 
     {% endfor %}
@@ -17,8 +20,33 @@
 </head>
 
 <body>
-    <p>Base template</p>
+    <div id="navbar-container">
+        <div id="navbar">
+            <div id="navbar-top">
+                <img toultip="Right click to copy website url" href="/" id="navbar-logo" src="{% static 'images/logo.png' %}" alt="skwal.net logo">
+                <div onclick="toggleButtons()" id="navbar-menu-button"><i class="fas fa-bars"></i></div>
+            </div>
+            <div id="navbar-buttons" data-active="false">
+                <div href="{% url 'home' %}" class="navbar-button"><i class="fa fa-home"></i><p>Home</p></div> 
+                <div href="{% url 'home' %}" class="navbar-button"><i class="fa fa-home"></i><p>Home</p></div>
+                <div href="{% url 'home' %}" class="navbar-button"><i class="fa fa-home"></i><p>Home</p></div>
+            </div>
+        </div>
+    </div>
+    <p>Base template <i class="fa fa-home"></i></p>
     {% block body %} {% endblock body %}
+    <script src="https://kit.fontawesome.com/2fd86e1bdd.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SkwalExe/Toasteur.js@v0.5.0/dist/toasteur.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SkwalExe/Toultip.js@v0.2.1/dist/toultip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SkwalExe/MessageBox.js@v0.4.0/dist/messagebox.min.js"></script>
+    <script src="{% static 'js/functions.js' %}"></script>
+    <script src="{% static 'js/global.js' %}"></script>
+    <script src="{% static 'js/links.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
+    
+    {% for script in scripts %}
+        <script src="/static/js/{{ script }}.js"></script>
+    {% endfor %}
 </body>
 
 </html>
