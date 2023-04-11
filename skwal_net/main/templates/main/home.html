@@ -1,13 +1,42 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block page_title %}Testing templates{% endblock %}
 
 {% block body %}
-    <h1 class="box">Base template</h1>
-    <h1>Testing templates</h1>
-    <p>Testing templates</p>
+    <h1 class="box">About skwal.net</h1>
+    <div class="box">
+        <h1>What is skwal.net 🤔</h1>
+        <p>
+            We want to create a <b>welcoming and caring place</b> for everyone to discover cool &amp; interesting things, share their knowledge, ideas, and creations.
+            Skwal.net is a forum about <b>programming</b> but you can find content on other domains.
+        </p>
+        <br>
+        <h3 class="arrow"><a href="#">Access the Forum</a></h3>
+        <h3 class="arrow"><a href="https://github.com/SkwalExe/skwal-net-v2">See this website on GitHub</a></h3>
+    </div>
+    <div class="box">
+        <h1>Who am I 🐈</h1>
+        <p>
+            My name is <b>Léopold Koprivnik</b> aka <b>SkwalExe</b>, I am <b>15 years old french 🇫🇷 student</b>. I created skwal.net in <b>2018</b>, when I was 10 years old and I continue to maintain it.
+            When I wrote the first line of code for this forum, I didn't know <b>anything</b> about coding. I learned everything I know while coding this website, it represents my first experience with programming.
+            <hr>
+            I love <b>FOSS</b>, and I am very interested in the <b>history of linux 🐧</b>.
+            I also enjoy creating open source, fun and interesting programs or libraries that you can find on my <a href="https://github.com/SkwalExe">github profile</a>.
+        </p>
+        <br>
+        <h3 class="arrow"><a _href="{% static '/docs/resume_fr.pdf' %}">Download my resume/CV (fr)</a></h3>
+        <h3 class="arrow"><a _href="https://github.com/SkwalExe">Visit my GitHub profile</a></h3>
+    </div>
 {% endblock %}
 
 {% block sidebar %}
-    <h1 class="box">Sidebar</h1>
+    <h1 class="box">Links</h1>
+    <div class="box flex column">
+        <a _href="{% static 'docs/resume_fr.pdf' %}"><i class="fa-solid fa-file"></i> My resume/CV (fr)</a>
+        <a _href="https://github.com/SkwalExe/"><i class="fa-brands fa-github"></i> Github</a>
+        <a _href="https://discord.skwal.net"><i class="fa-brands fa-discord"></i>Discord</a>
+        <a _href="https://www.paypal.com/paypalme/SkwalDev"><i class="fa-brands fa-paypal"></i>Paypal</a>
+        <a _href="https://ko-fi.com/SkwalExe"><i class="fa fa-mug-saucer"></i>Ko-fi</a>
+    </div>
 {% endblock %}

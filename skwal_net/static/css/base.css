@@ -23,7 +23,16 @@ body {
 
 a {
     text-decoration: none;
-    color: var(--accent-color)
+    color: var(--cyan);
+    transition-duration: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+a:hover {
+    color: var(--accent-color);
+    transform: translateX(0.001px);
 }
 
 *[href],
@@ -35,7 +44,7 @@ a {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 20px;
+    padding: 50px;
 }
 
 #page-body {
@@ -45,19 +54,26 @@ a {
     justify-content: center;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b {
     color: var(--accent-color);
 }
 
 .box {
     background-color: var(--color2);
-    padding: 10px;
+    padding: 20px;
     border-radius: var(--radius);
 }
 
 h1.box {
     text-align: center;
     width: 100%;
+    padding: 10px !important;
 }
 
 #page-sidebar {
@@ -65,14 +81,20 @@ h1.box {
     padding-left: 20px;
     border-left: 1px solid rgba(255, 255, 255, 0.1);
     margin-left: 20px;
-    height: 100%;
+}
+
+#page-content,
+#page-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 #page-content {
     width: 100%;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 800px) {
     #page-body {
         flex-direction: column;
     }
@@ -85,4 +107,30 @@ h1.box {
         margin-top: 20px;
         min-width: 100%;
     }
+}
+
+i {
+    color: var(--text-color);
+    font-size: 18px;
+}
+
+hr {
+    border: none;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    margin: 10px 0;
+}
+
+.arrow::before,
+.double-arrow::before {
+    color: white;
+    text-shadow: 0 0 1px var(--accent-color), 0 0 2px var(--accent-color), 0 0 4px var(--accent-color), 0 0 5px var(--accent-color), 0 0 10px var(--accent-color);
+    margin-right: 10px;
+}
+
+.arrow::before {
+    content: '>';
+}
+
+.double-arrow::before {
+    content: '>>';
 }
