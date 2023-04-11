@@ -1,0 +1,9 @@
+#footer {
+    width: 100%;
+    z-index: 100;
+    background-color: var(--color2);
+    text-align: center;
+    border-top: 2px solid var(--accent-color);
+    box-shadow: 0 0 5px var(--accent-color);
+    padding: 25px;
+}
