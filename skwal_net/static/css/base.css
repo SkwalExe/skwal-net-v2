@@ -8,6 +8,10 @@ body {
 
 body {
     padding-top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
 }
 
 * {
@@ -25,4 +29,16 @@ a {
 *[href],
 *[_href] {
     cursor: pointer;
+}
+
+#page-body-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#page-body {
+    width: 100%;
+    max-width: 1200px;
 }

@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{% static 'css/colors.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/utils.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toasteur@0.5.0/dist/themes/toasteur-default.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toultip@v0.2.1/dist/themes/toultip-default.min.css">
     {% for stylesheet in stylesheets %}
@@ -33,8 +35,29 @@
             </div>
         </div>
     </div>
-    <p>Base template <i class="fa fa-home"></i></p>
-    {% block body %} {% endblock body %}
+
+    <div id="page-body-container">
+        <div id="page-body">
+            <p>Base template <i class="fa fa-home"></i></p>
+            {% block body %} {% endblock body %}
+        </div>
+    </div>
+    
+
+
+    <div id="footer">
+        <p>© 2018-{% now "Y" %}, Léopold Koprivnik Ibghy, all rights reserved
+        <br>This website is open source and is available on <a href="https://github.com/SkwalExe/skwal-net-v2">GitHub</a></p>
+        <div class="flex h-center wrap" style='margin-top:10px;'>
+            <a href="/docs">📚 Documentation</a><a href="/about">🤔 About us</a>
+            <a href="/cookies">🍪 Cookies policy</a>
+            <a href="/privacy">🔒 Privacy policy</a>
+            <a href="/tos">📜 Terms of Service</a>
+            <a href="/credits-and-thanks">🙏 Credits and thanks</a>
+        </div>
+    </div>
+
+
     <script src="https://kit.fontawesome.com/2fd86e1bdd.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/SkwalExe/Toasteur.js@v0.5.0/dist/toasteur.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/SkwalExe/Toultip.js@v0.2.1/dist/toultip.min.js"></script>
