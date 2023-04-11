@@ -8,7 +8,7 @@
     <title>{% block page_title %}skwal.net{% endblock page_title %}</title>
     <meta name="description" content="{% block page_description %}skwal.net{% endblock page_description %}">
 
-    <link rel="stylesheet" href="{% static 'css/colors.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vars.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
@@ -38,8 +38,14 @@
 
     <div id="page-body-container">
         <div id="page-body">
-            <p>Base template <i class="fa fa-home"></i></p>
-            {% block body %} {% endblock body %}
+            <div id="page-content">
+                {% block body %}<h1 class="box">Base template</h1>{% endblock body %}
+            </div>
+            <div id="page-sidebar">
+                {% block sidebar %}
+                <h1 class="box">Base template</h1>
+                {% endblock sidebar %}
+            </div>
         </div>
     </div>
     

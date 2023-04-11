@@ -41,4 +41,48 @@ a {
 #page-body {
     width: 100%;
     max-width: 1200px;
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    color: var(--accent-color);
+}
+
+.box {
+    background-color: var(--color2);
+    padding: 10px;
+    border-radius: var(--radius);
+}
+
+h1.box {
+    text-align: center;
+    width: 100%;
+}
+
+#page-sidebar {
+    min-width: 300px;
+    padding-left: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    margin-left: 20px;
+    height: 100%;
+}
+
+#page-content {
+    width: 100%;
+}
+
+@media (max-width: 850px) {
+    #page-body {
+        flex-direction: column;
+    }
+    #page-sidebar {
+        padding-left: 0;
+        border-left: none;
+        margin-left: 0;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 20px;
+        min-width: 100%;
+    }
 }
