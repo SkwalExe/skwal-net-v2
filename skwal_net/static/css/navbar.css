@@ -1,0 +1,85 @@
+#navbar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: var(--color2);
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid var(--accent-color);
+    box-shadow: 0 0 5px var(--accent-color);
+}
+
+#navbar {
+    max-width: 2000px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#navbar-top,
+#navbar-buttons {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+#navbar-logo {
+    max-height: 35px;
+}
+
+.navbar-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px 15px;
+}
+
+.navbar-button:hover {
+    cursor: pointer;
+    color: var(--accent-color);
+}
+
+#navbar[data-mobile="true"] {
+    flex-direction: column;
+}
+
+#navbar[data-mobile="true"] #navbar-buttons {
+    flex-direction: column;
+}
+
+#navbar[data-mobile="true"] #navbar-top {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#navbar[data-mobile="true"],
+#navbar[data-mobile="true"] #navbar-buttons {
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+#navbar[data-mobile="true"] #navbar-buttons {
+    display: none;
+}
+
+#navbar[data-mobile="true"] #navbar-buttons[data-active="true"] {
+    display: flex;
+}
+
+#navbar-menu-button {
+    display: none;
+    cursor: pointer;
+}
+
+#navbar[data-mobile="true"] #navbar-menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    font-size: 25px;
+}
