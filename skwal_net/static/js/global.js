@@ -52,3 +52,13 @@ $$(".markdown hr[breakbox]").forEach(el => {
     parentParent.insertBefore(after, parent);
     remove(parent);
 });
+
+$$("i[load-icon]").forEach(el => {
+    let classes = el.getAttribute("load-icon");
+    for (_class of classes.split(" "))
+        if (!_class.startsWith("fa-"))
+            return;
+
+    el.className = classes;
+    el.removeAttribute("load-icon");
+});
