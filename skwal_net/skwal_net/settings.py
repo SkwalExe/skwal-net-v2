@@ -78,11 +78,15 @@ MARKDOWNIFY = {
             'arrow',
             'double-arrow',
             'breakbox',
+            'load-icon'
         ],
         "MARKDOWN_EXTENSIONS": [
             "markdown.extensions.fenced_code",
             "markdown.extensions.tables",
-        ]
+        ],
+        "LINKIFY_TEXT": {
+            "PARSE_URLS": False,
+        }
     },
 }
 

@@ -2,4 +2,4 @@
 
 <hr breakbox>
 
-<p arrow>Work in progress</p>
+[🧑‍💻 Using Skwal.net](?module=using-skwal-net)
