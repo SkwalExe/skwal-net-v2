@@ -46,13 +46,45 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
 INSTALLED_APPS = [
     "main",
     "api",
+    "documents",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "markdownify",
 ]
+
+MARKDOWNIFY = {
+    "default": {
+        "WHITELIST_TAGS": [
+            "h1", "h2", "h3", "h4", "h5", "h6",
+            "b", "i", "em", "strong", "a",
+            "p", "br",
+            "ul", "ol", "li",
+            "pre", "code", "blockquote",
+            "img",
+            "table", "thead", "tbody", "tr", "th", "td",
+            "span", "div",
+            "hr",
+            "sup", "sub",
+        ],
+        "WHITELIST_ATTRS": [
+            'href',
+            'src',
+            'alt',
+            'centered',
+            'arrow',
+            'double-arrow',
+            'breakbox',
+        ],
+        "MARKDOWN_EXTENSIONS": [
+            "markdown.extensions.fenced_code",
+            "markdown.extensions.tables",
+        ]
+    },
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

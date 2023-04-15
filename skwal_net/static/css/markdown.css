@@ -1,0 +1,39 @@
+.markdown ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+.markdown ul li::before {
+    content: '-';
+}
+
+.markdown ol li::marker,
+.markdown ul li::before {
+    margin-right: 5px;
+    text-shadow: 0 0 1px var(--accent-color), 0 0 2px var(--accent-color), 0 0 4px var(--accent-color), 0 0 5px var(--accent-color), 0 0 10px var(--accent-color);
+}
+
+.markdown img {
+    max-height: 300px;
+    max-width: 100%;
+    margin: 15px 0;
+}
+
+.markdown br {
+    content: "";
+    display: block;
+    margin: 7px 0;
+    font-size: 35%;
+}
+
+.markdown blockquote {
+    border-left: 3px solid rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    padding-left: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+}
+
+.markdown ol {
+    list-style-position: inside;
+}

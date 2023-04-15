@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load markdownify %}
+{% block page_title %}Testing templates{% endblock %}
+
+{% block body %}
+    <div class="box markdown">
+        {{ section_content | markdownify }}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <div class="box markdown">
+        {{ sidebar_content | markdownify }}
+    </div>
+{% endblock %}
