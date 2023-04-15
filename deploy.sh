@@ -19,7 +19,9 @@ git reset --hard HEAD
 git clean -f -d
 git pull origin main
 
+source /home/skwal/production_env/bin/activate
 pip install -r requirements.txt
+deactivate
 
 echo Disabling maintenance mode
 sudo systemctl start gunicorn
