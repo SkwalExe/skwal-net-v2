@@ -22,3 +22,7 @@ function getRandomInt(min, max) {
 function copy(text) {
     navigator.clipboard.writeText(text);
 }
+
+function remove(element) {
+    element.parentNode.removeChild(element);
+}

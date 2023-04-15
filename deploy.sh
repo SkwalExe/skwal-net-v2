@@ -19,6 +19,8 @@ git reset --hard HEAD
 git clean -f -d
 git pull origin main
 
+pip install -r requirements.txt
+
 echo Disabling maintenance mode
 sudo systemctl start gunicorn
 sleep 10

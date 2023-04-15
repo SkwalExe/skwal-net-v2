@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
     <link rel="stylesheet" href="{% static 'css/utils.css' %}">
+    <link rel="stylesheet" href="{% static 'css/prism.css' %}">
+    <link rel="stylesheet" href="{% static 'css/markdown.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toasteur@0.5.0/dist/themes/toasteur-default.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toultip@v0.2.1/dist/themes/toultip-default.min.css">
     {% for stylesheet in stylesheets %}
@@ -73,6 +75,7 @@
     <script src="{% static 'js/global.js' %}"></script>
     <script src="{% static 'js/links.js' %}"></script>
     <script src="{% static 'js/navbar.js' %}"></script>
+    <script src="{% static 'js/prism.min.js' %}"></script>
     
     {% for script in scripts %}
         <script src="/static/js/{{ script }}.js"></script>

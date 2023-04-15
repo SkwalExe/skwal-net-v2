@@ -23,7 +23,7 @@ body {
 
 a {
     text-decoration: none;
-    color: var(--cyan);
+    color: var(--red);
     transition-duration: var(--transition);
     display: inline-flex;
     align-items: center;
@@ -60,20 +60,24 @@ h3,
 h4,
 h5,
 h6,
-b {
+b,
+strong {
     color: var(--accent-color);
+}
+
+h1.center,
+h2.center,
+h3.center,
+h4.center,
+h5.center,
+h6.center {
+    text-align: center;
 }
 
 .box {
     background-color: var(--color2);
-    padding: 20px;
+    padding: 10px 20px;
     border-radius: var(--radius);
-}
-
-h1.box {
-    text-align: center;
-    width: 100%;
-    padding: 10px !important;
 }
 
 #page-sidebar {
@@ -92,11 +96,16 @@ h1.box {
 
 #page-content {
     width: 100%;
+    /* The sidebar is 320px */
+    max-width: calc(100% - 320px);
 }
 
 @media (max-width: 800px) {
     #page-body {
         flex-direction: column;
+    }
+    #page-content {
+        max-width: 100%;
     }
     #page-sidebar {
         padding-left: 0;
@@ -136,4 +145,19 @@ hr {
 
 .double-arrow::before {
     content: '>>';
+}
+
+.arrow,
+.double-arrow {
+    display: inline;
+}
+
+*::selection {
+    background-color: var(--red);
+    color: white;
+}
+
+*::-moz-selection {
+    background-color: var(--red);
+    color: white;
 }

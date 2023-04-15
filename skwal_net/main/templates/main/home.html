@@ -4,7 +4,7 @@
 {% block page_title %}Testing templates{% endblock %}
 
 {% block body %}
-    <h1 class="box">About skwal.net</h1>
+    <h1 class="box center">About skwal.net</h1>
     <div class="box">
         <h1>What is skwal.net 🤔</h1>
         <p>
@@ -12,8 +12,8 @@
             Skwal.net is a forum about <b>programming</b> but you can find content on other domains.
         </p>
         <br>
-        <h3 class="arrow"><a href="#">Access the Forum</a></h3>
-        <h3 class="arrow"><a href="https://github.com/SkwalExe/skwal-net-v2">See this website on GitHub</a></h3>
+        <h3><a class="arrow" href="#">Access the Forum</a></h3>
+        <h3><a class="arrow" _href="https://github.com/SkwalExe/skwal-net-v2">See this website on GitHub</a></h3>
     </div>
     <div class="box">
         <h1>Who am I 🐈</h1>
@@ -25,13 +25,13 @@
             I also enjoy creating open source, fun and interesting programs or libraries that you can find on my <a href="https://github.com/SkwalExe">github profile</a>.
         </p>
         <br>
-        <h3 class="arrow"><a _href="{% static '/docs/resume_fr.pdf' %}">Download my resume/CV (fr)</a></h3>
-        <h3 class="arrow"><a _href="https://github.com/SkwalExe">Visit my GitHub profile</a></h3>
+        <h3><a class="arrow" _href="{% static '/docs/resume_fr.pdf' %}">Download my resume/CV (fr)</a></h3>
+        <h3><a class="arrow" _href="https://github.com/SkwalExe">Visit my GitHub profile</a></h3>
     </div>
 {% endblock %}
 
 {% block sidebar %}
-    <h1 class="box">Links</h1>
+    <h1 class="box center">Links</h1>
     <div class="box flex column">
         <a _href="{% static 'docs/resume_fr.pdf' %}"><i class="fa-solid fa-file"></i> My resume/CV (fr)</a>
         <a _href="https://github.com/SkwalExe/"><i class="fa-brands fa-github"></i> Github</a>

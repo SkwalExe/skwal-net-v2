@@ -14,7 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Show the buttons or put them in the dropdown menu if the window is too small when resizing
     window.addEventListener("resize", () => navbar.dataset.mobile = window.innerWidth < minWidth);
-
+    // Call resize event to force the navbar
+    // to adjust to the window size when the page is loaded
+    window.dispatchEvent(new Event("resize"));
     // Copy the website URL to the clipboard when clicking on the logo
     navbarLogo.oncontextmenu = function(e) {
         e.preventDefault();
