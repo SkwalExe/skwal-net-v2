@@ -24,4 +24,5 @@ def index(request):
     return render(request, "docs/index.html", {
         "section_content": section_content,
         "sidebar_content": sidebar_content,
+        "page_title": "📜 " + " ".join(module.split("-")).title()
     })

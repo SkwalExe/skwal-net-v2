@@ -2,8 +2,6 @@
 html,
 body {
     background-color: var(--color1);
-    color: var(--text-color);
-    font-family: "Poppins", "Roboto", "Noto", sans-serif;
 }
 
 body {
@@ -12,6 +10,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
+    color: var(--text-color);
 }
 
 * {
@@ -19,6 +18,7 @@ body {
     padding: 0;
     margin: 0;
     outline: none;
+    font-family: "Poppins", "Roboto", "Noto", sans-serif;
 }
 
 a {
@@ -54,6 +54,10 @@ a:hover {
     justify-content: center;
 }
 
+#page-body[data-small="true"] {
+    max-width: 800px;
+}
+
 h1,
 h2,
 h3,
@@ -70,13 +74,14 @@ h2.center,
 h3.center,
 h4.center,
 h5.center,
-h6.center {
+h6.center,
+p.center {
     text-align: center;
 }
 
 .box {
     background-color: var(--color2);
-    padding: 10px 20px;
+    padding: 15px;
     border-radius: var(--radius);
 }
 
@@ -100,7 +105,7 @@ h6.center {
     max-width: calc(100% - 320px);
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
     #page-body {
         flex-direction: column;
     }
@@ -160,4 +165,89 @@ hr {
 *::-moz-selection {
     background-color: var(--red);
     color: white;
+}
+
+ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+ul li::before {
+    content: '-';
+}
+
+ol li::marker,
+ul li::before {
+    margin-right: 5px;
+    text-shadow: 0 0 1px var(--accent-color), 0 0 2px var(--accent-color), 0 0 4px var(--accent-color), 0 0 5px var(--accent-color), 0 0 10px var(--accent-color);
+}
+
+ol {
+    list-style-position: inside;
+}
+
+.box img {
+    max-height: 300px;
+    max-width: 100%;
+    margin: 15px 0;
+}
+
+br {
+    display: block;
+    margin: 7px 0;
+    font-size: 35%;
+}
+
+blockquote {
+    border-left: 3px solid rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    padding-left: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+}
+
+input {
+    border: 1px solid var(--accent-color);
+    background-color: var(--color1);
+    border-radius: var(--radius);
+    color: var(--text-color);
+    padding: 5px;
+    height: 30px;
+    width: 100%;
+}
+
+button:hover {
+    box-shadow: 0 0 5px var(--color3);
+}
+
+button {
+    color: var(--text-color);
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    padding: 5px;
+    transition-duration: var(--transition);
+}
+
+.field.error input {
+    border: 2px solid var(--red);
+}
+
+p.error {
+    color: var(--red);
+}
+
+p.error-bg {
+    background-color: var(--red);
+    color: white;
+    padding: 5px 10px;
+    border-radius: var(--radius);
 }

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1 class="box center">{{ form.form_name }} 📜</h1>
+    <div class="box">
+        <form method="post">
+            {% csrf_token %}
+            {% for error in form.non_field_errors %}
+                <p class="error-bg">{{ error }}</p>
+            {% endfor %}
+            {% for field in form %}
+                <div class="field {% if field.errors %}error{% endif %}">
+                    <h4>{{ field.label }} {% if field.field.required %}*{% endif %}</h4>
+                    {% for error in field.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                    <input {% for attr in field.field.widget.attrs.items %}{{ attr.0 }}="{{ attr.1 }}" {% endfor %}
+                     type="{{ field.field.widget.input_type }}" name="{{ field.name }}" value="{{ field.value | default_if_none:'' }}">
+                </div>
+            {% endfor %}
+            <button type="submit">{{form.submit_button|default:"submit"}}</button>
+            <p class="center">{{ form.form_disclaimer | safe }}</p>
+        </form>
+        {% if form.form_links %}
+            <hr>
+            <div class="flex h-center gap-10 separated">
+                {% for link in form.form_links %}
+                    <a href="{{ link.href }}">{{ link.text }}<i class="{{link.icon}}"></i></a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
