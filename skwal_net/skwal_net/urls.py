@@ -22,4 +22,5 @@ urlpatterns = [
     path("api/", include("api.urls")),
     path("docs/", include("documents.urls")),
     path("", include("main.urls")),
+    path("", include("account.urls")),
 ]
