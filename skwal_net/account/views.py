@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 def register_(request):
     if request.user.is_authenticated:
-        return redirect(reverse("account"))
+        return redirect(reverse("profile"))
 
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -19,7 +19,7 @@ def register_(request):
             login(request, user)
             request.session["session_date"] = datetime.datetime.now(
             ).timestamp()
-            return redirect(reverse("account"))
+            return redirect(reverse("profile"))
 
     else:
         form = RegisterForm()
@@ -35,7 +35,7 @@ def register_(request):
 
 def login_(request):
     if request.user.is_authenticated:
-        return redirect(reverse("account"))
+        return redirect(reverse("profile"))
 
     if request.method == "POST":
         form = LoginForm(request.POST)
@@ -48,7 +48,7 @@ def login_(request):
                 login(request, user)
                 request.session["session_date"] = datetime.datetime.now(
                 ).timestamp()
-                return redirect(reverse("account"))
+                return redirect(reverse("profile"))
             else:
                 form.add_error(None, "Invalid email or password")
 
@@ -64,5 +64,7 @@ def login_(request):
     })
 
 
-def account_(request):
+def profile_(request, username=None):
+    if username is None:
+        return redirect(reverse("login") if not request.user.is_authenticated else reverse("profile", args=[request.user.username]))
     return HttpResponse(f"You'fe logged in : {request.user}", status=200)
