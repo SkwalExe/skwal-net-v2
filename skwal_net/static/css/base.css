@@ -25,9 +25,7 @@ a {
     text-decoration: none;
     color: var(--red);
     transition-duration: var(--transition);
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
+    display: inline;
 }
 
 a:hover {
