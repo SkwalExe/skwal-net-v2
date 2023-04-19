@@ -68,11 +68,11 @@ server {
 }       
 
 # server for non-defined subdomains
+# rewrite the route to https://skwal.net/unknown_subdomain
 server {
         listen 443 default_server;
         server_name _;
         ssl_certificate /etc/letsencrypt/live/sub.skwal.net/fullchain.pem; # managed by Certbot
         ssl_certificate_key /etc/letsencrypt/live/sub.skwal.net/privkey.pem; # managed by Certbot
-        return 200 "I AM ON FIRE $host";
-
+        return 302 https://skwal.net/unknown_subdomain;
 }
