@@ -8,14 +8,14 @@
     <title>{{ page_title | default:"Skwal" }}</title>
     <meta name="description" content="{{ page_description | default:"We want to create a welcoming and caring place for everyone to discover cool &amp; interesting things, share their knowledge, ideas, and creations. Skwal.net is a forum about programming but you can find content on other domains." }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel='icon' type='image/ico' href="{% static 'img/favicon.ico' %}">
+    <link rel='icon' type='image/ico' href="{% vstatic 'img/favicon.ico' %}">
 
-    <link rel="stylesheet" href="{% static 'css/vars.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
-    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
-    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
-    <link rel="stylesheet" href="{% static 'css/utils.css' %}">
-    <link rel="stylesheet" href="{% static 'css/prism.css' %}">
+    <link rel="stylesheet" href="{% vstatic 'css/vars.css' %}">
+    <link rel="stylesheet" href="{% vstatic 'css/base.css' %}"> 
+    <link rel="stylesheet" href="{% vstatic 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% vstatic 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% vstatic 'css/utils.css' %}">
+    <link rel="stylesheet" href="{% vstatic 'css/prism.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toasteur@0.5.0/dist/themes/toasteur-default.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toultip@v0.2.1/dist/themes/toultip-default.min.css">
     {% for stylesheet in stylesheets %}
@@ -28,7 +28,7 @@
     <div id="navbar-container">
         <div id="navbar">
             <div id="navbar-top">
-                <img toultip="Right click to copy website url" href="/" id="navbar-logo" src="{% static 'img/logo.png' %}" alt="skwal.net logo">
+                <img toultip="Right click to copy website url" href="/" id="navbar-logo" src="{% vstatic 'img/logo.png' %}" alt="skwal.net logo">
                 <div onclick="toggleButtons()" id="navbar-menu-button"><i class="fas fa-bars"></i></div>
             </div>
             <div id="navbar-buttons" data-active="false">
@@ -76,11 +76,11 @@
     <script src="https://cdn.jsdelivr.net/gh/SkwalExe/Toasteur.js@v0.5.0/dist/toasteur.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/SkwalExe/Toultip.js@v0.2.1/dist/toultip.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/SkwalExe/MessageBox.js@v0.4.0/dist/messagebox.min.js"></script>
-    <script src="{% static 'js/functions.js' %}"></script>
-    <script src="{% static 'js/global.js' %}"></script>
-    <script src="{% static 'js/links.js' %}"></script>
-    <script src="{% static 'js/navbar.js' %}"></script>
-    <script src="{% static 'js/prism.min.js' %}"></script>
+    <script src="{% vstatic 'js/functions.js' %}"></script>
+    <script src="{% vstatic 'js/global.js' %}"></script>
+    <script src="{% vstatic 'js/links.js' %}"></script>
+    <script src="{% vstatic 'js/navbar.js' %}"></script>
+    <script src="{% vstatic 'js/prism.min.js' %}"></script>
     
     {% for script in scripts %}
         <script src="/static/js/{{ script }}.js"></script>

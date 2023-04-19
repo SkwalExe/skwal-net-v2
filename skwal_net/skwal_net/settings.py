@@ -115,6 +115,12 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
+            "libraries": {
+                "custom_tags": "main.templatetags.custom_tags",
+            },
+            "builtins": [
+                "main.templatetags.custom_tags",
+            ]
         },
     },
 ]
@@ -180,9 +186,15 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
+# I do not use manage.py collectstatic
+# This setting is only for the vstatic
+# template tag to work (main.templatetags.custom_tags)
+VSTATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static/")
+    VSTATIC_ROOT
 ]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
