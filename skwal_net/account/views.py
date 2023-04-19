@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.shortcuts import render
 from django.http import HttpResponse
 from main.classes import *
+from main.utils import *
 from .forms import *
 import datetime
 from django.contrib.auth import authenticate, login, logout
@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 def register_(request):
     if request.user.is_authenticated:
-        return redirect(reverse("profile"))
+        return rediverse("profile", args=[request.user.username])
 
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -19,7 +19,7 @@ def register_(request):
             login(request, user)
             request.session["session_date"] = datetime.datetime.now(
             ).timestamp()
-            return redirect(reverse("profile"))
+            return rediverse("profile")
 
     else:
         form = RegisterForm()
@@ -35,7 +35,7 @@ def register_(request):
 
 def login_(request):
     if request.user.is_authenticated:
-        return redirect(reverse("profile"))
+        return rediverse("profile")
 
     if request.method == "POST":
         form = LoginForm(request.POST)
@@ -48,7 +48,7 @@ def login_(request):
                 login(request, user)
                 request.session["session_date"] = datetime.datetime.now(
                 ).timestamp()
-                return redirect(reverse("profile"))
+                return rediverse("profile")
             else:
                 form.add_error(None, "Invalid email or password")
 
@@ -66,5 +66,5 @@ def login_(request):
 
 def profile_(request, username=None):
     if username is None:
-        return redirect(reverse("login") if not request.user.is_authenticated else reverse("profile", args=[request.user.username]))
+        return rediverse("login") if not request.user.is_authenticated else rediverse("profile", args=[request.user.username])
     return HttpResponse(f"You'fe logged in : {request.user}", status=200)
