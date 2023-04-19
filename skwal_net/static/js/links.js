@@ -2,7 +2,7 @@ $$("*[href]").forEach(element => {
     let href = element.getAttribute("href");
     element.onclick = (e) =>
         redirect(href, (e.ctrlKey || e.metaKey || e.button == 1))
-    element._onauxclick = (e) => {
+    element.onauxclick = (e) => {
         if (e.button === 2)
             redirect(href, true);
     }
