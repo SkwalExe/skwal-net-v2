@@ -13,6 +13,10 @@
     border-radius: var(--radius);
 }
 
+.flex.separated>div {
+    padding: 10px !important;
+}
+
 .wrap {
     flex-wrap: wrap;
 }
