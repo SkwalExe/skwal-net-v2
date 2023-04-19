@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 from django.conf.urls import handler400, handler403, handler404, handler500
+from error.views import unknown_subdomain
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -24,6 +25,7 @@ urlpatterns = [
     path("docs/", include("documents.urls")),
     path("", include("main.urls")),
     path("", include("account.urls")),
+    path("unknown_subdomain/", unknown_subdomain)
 ]
 
 handler400 = "error.views.handler400"
