@@ -10,7 +10,7 @@ def handler403(request, exception):
 
 
 def handler404(request, exception):
-    return error_page(request, 404, "The requested resource was not found. If you typed the adress manually, check your spelling. If you clicked a link, it may be broken, please contact us with the linnk below.")
+    return error_page(request, 404, "The requested resource was not found. If you typed the adress manually, check your spelling. If you clicked a link, it may be broken, please contact us with the link below.")
 
 
 def handler500(request):
