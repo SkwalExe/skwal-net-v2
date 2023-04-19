@@ -36,3 +36,10 @@
 .h-between {
     justify-content: space-between;
 }
+
+.break {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    white-space: normal;
+    word-break: break-word;
+}

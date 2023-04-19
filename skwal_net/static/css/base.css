@@ -137,6 +137,10 @@ hr {
     margin: 10px 0;
 }
 
+hr.no-margin {
+    margin: 0;
+}
+
 .arrow::before,
 .double-arrow::before {
     color: white;
@@ -241,13 +245,30 @@ button {
     border: 2px solid var(--red);
 }
 
-p.error {
+p.error,
+h1.error,
+h2.error,
+h3.error,
+h4.error,
+h5.error,
+h6.error,
+span.error {
     color: var(--red);
 }
 
-p.error-bg {
+.nolh {
+    line-height: 1em;
+}
+
+p.error-bg,
+h1.error-bg,
+h2.error-bg,
+h3.error-bg,
+h4.error-bg,
+h5.error-bg,
+h6.error-bg,
+span.error-bg {
     background-color: var(--red);
     color: white;
     padding: 5px 10px;
-    border-radius: var(--radius);
 }

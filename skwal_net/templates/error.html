@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div>
+        <h1 class="nolh error" style="font-size: 150px">{{ error_code | default:"Error"}}</h1>
+        <h2 class="error-bg break" style="font-size: 25px">{{ error_message | default:"Something went wrong"}}</h2>
+        <br>
+        <button style="width:100%" href="/">Home page</button>
+        <hr>
+        <p>If you think that you should not be seeing this page, please <a href="mailto:skwal@skwal.net">contact the administrator</a> at skwal@skwal.net.</p>
+    </div>
+{% endblock %}
