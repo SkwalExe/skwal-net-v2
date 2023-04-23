@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     "main",
     "account",
     "api",
-    "documents",
+    "documentation",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

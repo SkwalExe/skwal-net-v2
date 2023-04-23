@@ -22,7 +22,7 @@ from error.views import unknown_subdomain
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("api.urls")),
-    path("docs/", include("documents.urls")),
+    path("", include("documentation.urls")),
     path("", include("main.urls")),
     path("", include("account.urls")),
     path("unknown_subdomain/", unknown_subdomain)

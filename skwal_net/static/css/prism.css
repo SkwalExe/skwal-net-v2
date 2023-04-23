@@ -1,5 +1,5 @@
-.markdown code,
-.markdown pre {
+code,
+pre {
     color: #f8f8f2;
     background: 0 0;
     text-shadow: 0 1px rgba(0, 0, 0, .3);
@@ -20,12 +20,12 @@
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
 }
 
-.markdown code *,
-.markdown pre * {
+code *,
+pre * {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
 }
 
-.markdown pre {
+pre {
     padding: 1em;
     margin: .5em 0;
     overflow: auto;
@@ -34,12 +34,12 @@
     overflow: auto;
 }
 
-.markdown :not(pre)>code,
-.markdown pre {
+:not(pre)>code,
+pre {
     background: var(--color1)
 }
 
-.markdown :not(pre)>code {
+:not(pre)>code {
     padding: 0 5px;
     border-radius: .3em;
     white-space: normal;

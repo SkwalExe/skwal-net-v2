@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
-{% load static %}
 {% load markdownify %}
 
 {% block body %}
-    <div class="box markdown">
-        {{ section_content | markdownify }}
+    <div class="box">
+        {{ body_content | markdownify }}
     </div>
 {% endblock %}
 
 {% block sidebar %}
-    <div class="box markdown">
+    <div class="box">
         {{ sidebar_content | markdownify }}
     </div>
 {% endblock %}
