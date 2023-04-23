@@ -1,17 +1,17 @@
 toasteur = new Toasteur("top-right", 5000, 'top');
 Toultip.init(200, true);
 
-$$(".markdown *[centered]").forEach(el => {
+$$("*[centered]").forEach(el => {
     el.classList.add("center");
 });
-$$(".markdown *[arrow]").forEach(el => {
+$$("*[arrow]").forEach(el => {
     el.classList.add("arrow");
 });
-$$(".markdown *[double-arrow]").forEach(el => {
+$$("*[double-arrow]").forEach(el => {
     el.classList.add("double-arrow");
 });
 
-$$(".markdown hr[breakbox]").forEach(el => {
+$$("hr[breakbox]").forEach(el => {
     let parent = el.parentNode;
     let parentParent = parent.parentNode;
     if (parent.tagName != "DIV" || !parent.classList.contains("box"))

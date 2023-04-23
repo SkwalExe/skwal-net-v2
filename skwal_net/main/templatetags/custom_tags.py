@@ -28,7 +28,6 @@ class UrlCache(object):
             with self._lock:
                 value = '%s%s' % (settings.STATIC_URL, file)
                 try:
-                    print(path.join(settings.VSTATIC_ROOT, file))
                     md5 = self.calc_md5(
                         path.join(settings.VSTATIC_ROOT, file))[:8]
                     value += '?v=%s' % md5

@@ -1,7 +1,6 @@
 // Show/Hide navbar buttons on mobile
 function toggleButtons() {
     let navbarButtons = $("#navbar-buttons");
-    print(navbarButtons.dataset.active);
     navbarButtons.dataset.active = navbarButtons.dataset.active === "true" ? "false" : "true";
 }
 
