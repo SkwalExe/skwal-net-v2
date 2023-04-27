@@ -186,13 +186,10 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-# I do not use manage.py collectstatic
-# This setting is only for the vstatic
-# template tag to work (main.templatetags.custom_tags)
-VSTATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 STATICFILES_DIRS = [
-    VSTATIC_ROOT
+    os.path.join(BASE_DIR, "app_static/")
 ]
 
 

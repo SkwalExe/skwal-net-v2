@@ -5,6 +5,7 @@ import threading
 from os import path
 from django import template
 from django.conf import settings
+from random import randint
 
 register = template.Library()
 
@@ -15,6 +16,10 @@ class UrlCache(object):
 
     @classmethod
     def get_md5(self, file):
+        value = '%s%s' % (settings.STATIC_URL, file)
+        if not settings.PRODUCTION:
+            return value + f'?v={randint(0, 1000000)}'
+
         # A / at the beginning of the file
         # Will cause an error because
         # /xxx//file -> // will be interpreted as the
@@ -26,10 +31,9 @@ class UrlCache(object):
             return self._md5_sum[file]
         except KeyError:
             with self._lock:
-                value = '%s%s' % (settings.STATIC_URL, file)
                 try:
                     md5 = self.calc_md5(
-                        path.join(settings.VSTATIC_ROOT, file))[:8]
+                        path.join(settings.STATIC_ROOT, file))[:8]
                     value += '?v=%s' % md5
                 except IsADirectoryError:
                     pass
