@@ -22,6 +22,8 @@ git pull origin main
 source /home/skwal/production_env/bin/activate
 pip install -r requirements.txt
 python3 skwal_net/manage.py migrate
+rm -rf skwal_net/static
+python3 skwal_net/manage.py collectstatic --noinput
 deactivate
 
 echo Disabling maintenance mode

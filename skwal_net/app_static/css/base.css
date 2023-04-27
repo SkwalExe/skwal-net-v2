@@ -56,6 +56,10 @@ a:hover {
     max-width: 800px;
 }
 
+#page-body[data-inverse="true"] {
+    flex-direction: row-reverse;
+}
+
 h1,
 h2,
 h3,
@@ -85,6 +89,10 @@ p.center {
 
 #page-sidebar {
     min-width: 300px;
+}
+
+#page-body:not([data-inverse="true"]) #page-sidebar {
+    min-width: 300px;
     padding-left: 20px;
     border-left: 1px solid rgba(255, 255, 255, 0.1);
     margin-left: 20px;
@@ -95,6 +103,12 @@ p.center {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+#page-body[data-inverse="true"] #page-sidebar {
+    padding-right: 20px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    margin-right: 20px;
 }
 
 #page-content {

@@ -1,3 +1,6 @@
+# final static files dir
+skwal_net/static/
+
 # hooks
 hooks/*
 # but not hooks/info.txt
