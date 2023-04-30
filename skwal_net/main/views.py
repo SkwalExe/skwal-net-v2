@@ -7,9 +7,9 @@ from main.utils import *
 def home(request):
     return render(request, 'main/home.html', {
         "nav_buttons": [
-            NavButton("/", "Home", "fa fa-home"),
-            NavButton("/profile", "Account", "fa fa-user")
+            HomeNavButton(),
+            AccountNavButton()
             if request.user.is_authenticated else
-            NavButton("/login", "Login", "fa fa-sign-in-alt")
+            LoginNavButton()
         ]
     })

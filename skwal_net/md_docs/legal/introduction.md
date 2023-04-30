@@ -14,6 +14,6 @@ In this module, you will find information about:
 <br>
 We are committed to protecting your personal data and providing you with a quality user experience, our goal is to be **as transparent as possible** with our users.
 <br>
-We encourage you to carefully read all sectisons of the module to understand how to best use our platform and to know your rights and responsibilities as a Skwal.net user. 
+We encourage you to carefully read all sectisons of the module to understand how to best use our platform and to know your rights and responsibilities as a Skwal.net user.
 
 > We are happy to welcome you to our platform and we hope you enjoy your experience with us.

@@ -8,6 +8,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 
+def logout_(request):
+    logout(request)
+    return rediverse("home")
+
+
 def register_(request):
     if request.user.is_authenticated:
         return rediverse("profile", args=[request.user.username])
@@ -15,7 +20,13 @@ def register_(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = User.objects.create_user(
+                username=form.cleaned_data["username"],
+                email=form.cleaned_data["email"],
+                password=form.cleaned_data["password1"],
+            )
+            user.display_name = form.cleaned_data["display_name"]
+            user.save()
             login(request, user)
             request.session["session_date"] = datetime.datetime.now(
             ).timestamp()
@@ -43,7 +54,6 @@ def login_(request):
         if form.is_valid():
             user = authenticate(
                 request, email=form.cleaned_data["email"], password=form.cleaned_data["password"])
-
             if user is not None:
                 login(request, user)
                 request.session["session_date"] = datetime.datetime.now(
@@ -64,7 +74,12 @@ def login_(request):
     })
 
 
+@login_required()
 def profile_(request, username=None):
     if username is None:
-        return rediverse("login") if not request.user.is_authenticated else rediverse("profile", args=[request.user.username])
-    return HttpResponse(f"You'fe logged in : {request.user}", status=200)
+        rediverse("profile", args=[request.user.username])
+    return render(request, "account/profile.html", {
+        "inverse_sidebar": True,
+        "user": request.user,
+        "stylesheets": ["profile-sidebar"],
+    })

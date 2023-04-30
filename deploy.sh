@@ -6,11 +6,11 @@
 
 if [ $HOSTNAME != "esx1" ]
 then
-  echo This script must only be run in production! 
-  exit 1 
+  echo This script must only be run in production!
+  exit 1
 fi
 
-touch hooks/maintenance 
+touch hooks/maintenance
 sudo systemctl stop gunicorn
 echo Enabling maintenance mode
 sleep 5

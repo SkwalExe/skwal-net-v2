@@ -19,6 +19,10 @@ server {
                 alias /home/skwal/skwal-net-v2/skwal_net/static/;
         }
 
+        location /media/ {
+                alias /home/skwal/skwal-net-v2/skwal_net/media/;
+        }
+
         location / {
                 if (-f /home/skwal/skwal-net-v2/hooks/maintenance) {
                         return 503;
@@ -65,7 +69,7 @@ server {
         ssl_certificate /etc/letsencrypt/live/sub.skwal.net/fullchain.pem; # managed by Certbot
         ssl_certificate_key /etc/letsencrypt/live/sub.skwal.net/privkey.pem; # managed by Certbot
         return 301 https://skwal.net$request_uri;
-}       
+}
 
 # server for non-defined subdomains
 # rewrite the route to https://skwal.net/unknown_subdomain

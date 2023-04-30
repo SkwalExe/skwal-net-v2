@@ -11,15 +11,18 @@
     <link rel='icon' type='image/ico' href="{% vstatic 'img/favicon.ico' %}">
 
     <link rel="stylesheet" href="{% vstatic 'css/vars.css' %}">
-    <link rel="stylesheet" href="{% vstatic 'css/base.css' %}"> 
+    <link rel="stylesheet" href="{% vstatic 'css/base.css' %}">
+    <link rel="stylesheet" href="{% vstatic 'css/global.css' %}">
     <link rel="stylesheet" href="{% vstatic 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% vstatic 'css/footer.css' %}">
     <link rel="stylesheet" href="{% vstatic 'css/utils.css' %}">
+    <link rel="stylesheet" href="{% vstatic 'css/text-utils.css' %}">
+    <link rel="stylesheet" href="{% vstatic 'css/forms.css' %}">
     <link rel="stylesheet" href="{% vstatic 'css/prism.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toasteur@0.5.0/dist/themes/toasteur-default.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toultip@v0.2.1/dist/themes/toultip-default.min.css">
     {% for stylesheet in stylesheets %}
-        <link rel="stylesheet" href="/static/css/{{ stylesheet }}.css"> 
+        <link rel="stylesheet" href="/static/css/{{ stylesheet }}.css">
     {% endfor %}
 
 </head>
@@ -42,7 +45,7 @@
     </div>
 
     <div id="page-body-container">
-        <div id="page-body" {% if small_body %}data-small='true'{% endif %}>
+        <div id="page-body" {% if small_body %}data-small='true'{% endif %} {% if inverse_sidebar %}data-inverse='true'{% endif %}>
             <div id="page-content">
                 {% block body %}<h1 class="box">Base template</h1>{% endblock body %}
             </div>
@@ -55,7 +58,6 @@
             {% endif %}
         </div>
     </div>
-    
 
 
     <div id="footer">
@@ -81,7 +83,6 @@
     <script src="{% vstatic 'js/links.js' %}"></script>
     <script src="{% vstatic 'js/navbar.js' %}"></script>
     <script src="{% vstatic 'js/prism.min.js' %}"></script>
-    
     {% for script in scripts %}
         <script src="/static/js/{{ script }}.js"></script>
     {% endfor %}

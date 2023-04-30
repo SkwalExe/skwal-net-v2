@@ -1,5 +1,5 @@
 This directory will contain hooks file.
-Hooks file are files that, when present, 
+Hooks file are files that, when present,
 will fire certain actions.
 Hooks are only used in production.
 

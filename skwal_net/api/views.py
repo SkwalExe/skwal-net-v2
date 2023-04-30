@@ -32,8 +32,8 @@ def redeploy(request):
 
     payload = json.loads(data)
     if payload["ref"] == "refs/heads/main":
-        file = open(os.path.join(os.path.dirname(
-            __file__), "../../hooks/redeploy"), "w")
+        file = open(os.path.join(os.path.dirname(__file__), "..",
+                    "..", "hooks", "redeploy"), "w")
         file.write("Redeploy")
         file.close()
     return HttpResponse(status=200)

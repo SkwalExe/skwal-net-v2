@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block sidebar %}
+    <div class="flex gap-20 column">
+        <div id="profile-main">
+            <div class="icon-container">
+                <img src="{{ user.icon }}" alt="icon" />
+            </div>
+            <div id="profile-names">
+                <h1 class="break shadow nolh">{{ user }}</h1>
+                <p class="break secondary">{{ user.username }}</p>
+            </div>
+        </div>
+        <div>
+            <p class="break">{{ user.bio }}</p>
+        </div>
+    </div>
+{% endblock %}

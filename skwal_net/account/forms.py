@@ -21,31 +21,35 @@ class RegisterForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # placeholders
-        self.fields["username"].widget.attrs["placeholder"] = "_Username92"
-        self.fields["email"].widget.attrs["placeholder"] = "name@example.com"
-        self.fields["password1"].widget.attrs["placeholder"] = "Your password"
-        self.fields["password2"].widget.attrs["placeholder"] = "Confirm password"
-        self.fields["display_name"].widget.attrs["placeholder"] = "Display Name"
+        placeholders = {
+            "username": "_Username92",
+            "email": "name@example.com",
+            "password1": "Your password",
+            "password2": "Confirm password",
+            "display_name": "Display Name"
+        }
+
+        for field in self.fields:
+            self.fields[field].widget.attrs["placeholder"] = placeholders[field]
 
     def is_valid(self):
         valid = super().is_valid()
         if not valid:
-            return valid
+            return False
 
         ok = True
 
-        # check if username is taken
+        # check if the username is already taken
         if User.objects.filter(username=self.cleaned_data["username"]).exists():
             self.add_error("username", "Username is already in use")
             ok = False
 
-        # check if email is taken
+        # check if the email is already taken
         if User.objects.filter(email=self.cleaned_data["email"]).exists():
             self.add_error("email", "Email is already in use")
             ok = False
 
-        # Check if username is valid
+        # Check if the username is valid
         if not is_valid_username(self.cleaned_data["username"]):
             self.add_error(
                 "username", "Username must contain at least one letter or number, and can include dashes, dots, and underscores")
@@ -71,9 +75,12 @@ class LoginForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # placeholders
-        self.fields["email"].widget.attrs["placeholder"] = "name@example.com"
-        self.fields["password"].widget.attrs["placeholder"] = "Your password"
+        placeholders = {
+            "email": "name@example.com",
+            "password": "Your password",
+        }
+        for field in self.fields:
+            self.fields[field].widget.attrs["placeholder"] = placeholders[field]
 
     def clean(self):
         cleaned_data = self.cleaned_data

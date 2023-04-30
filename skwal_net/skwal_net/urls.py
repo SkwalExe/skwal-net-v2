@@ -18,6 +18,8 @@ from django.urls import path
 from django.urls.conf import include
 from django.conf.urls import handler400, handler403, handler404, handler500
 from error.views import unknown_subdomain
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -27,6 +29,10 @@ urlpatterns = [
     path("", include("account.urls")),
     path("unknown_subdomain/", unknown_subdomain)
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
 
 handler400 = "error.views.handler400"
 handler403 = "error.views.handler403"

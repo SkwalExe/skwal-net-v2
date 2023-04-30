@@ -1,0 +1,10 @@
+{% extends 'sidebar_profile.html' %}
+{% load static %}
+{% load markdownify %}
+
+{% block body %}
+    <div class="box">
+        <p class="secondary">{{ user.username }}/README.md</p>
+        {{ user.readme | default:"No README.md" | markdownify }}
+    </div>
+{% endblock %}
