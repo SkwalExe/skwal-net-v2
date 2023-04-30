@@ -1,0 +1,83 @@
+p.error,
+h1.error,
+h2.error,
+h3.error,
+h4.error,
+h5.error,
+h6.error,
+span.error {
+    color: var(--red);
+}
+
+.nolh {
+    line-height: 1em;
+}
+
+p.error-bg,
+h1.error-bg,
+h2.error-bg,
+h3.error-bg,
+h4.error-bg,
+h5.error-bg,
+h6.error-bg,
+span.error-bg {
+    background-color: var(--red);
+    color: white;
+    padding: 5px 10px;
+}
+
+p.secondary,
+h1.secondary,
+h2.secondary,
+h3.secondary,
+h4.secondary,
+h5.secondary,
+h6.secondary,
+span.secondary {
+    color: rgba(255, 255, 255, .4);
+}
+
+p.secondary-bg,
+h1.secondary-bg,
+h2.secondary-bg,
+h3.secondary-bg,
+h4.secondary-bg,
+h5.secondary-bg,
+h6.secondary-bg,
+span.secondary-bg {
+    background-color: rgba(255, 255, 255, .4);
+    color: var(--text-color);
+    padding: 5px 10px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+strong {
+    color: var(--accent-color);
+}
+
+h1.center,
+h2.center,
+h3.center,
+h4.center,
+h5.center,
+h6.center,
+p.center {
+    text-align: center;
+}
+
+p.shadow,
+h1.shadow,
+h2.shadow,
+h3.shadow,
+h4.shadow,
+h5.shadow,
+h6.shadow,
+span.shadow {
+    text-shadow: -2px 3px 0px rgba(0, 0, 0, .5);
+}

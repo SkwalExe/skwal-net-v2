@@ -1,3 +1,7 @@
+# media files but not the default user icon
+skwal_net/media/icons/*
+!skwal_net/media/icons/default.gif
+
 # final static files dir
 skwal_net/static/
 

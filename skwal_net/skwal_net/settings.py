@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
-DOTENV_FILE = os.path.join(os.path.dirname(__file__), "../../.env")
+DOTENV_FILE = os.path.join(os.path.dirname(__file__), "..", "..", ".env")
 
 # Check if the file exists
 if not os.path.isfile(DOTENV_FILE):
@@ -106,7 +106,7 @@ ROOT_URLCONF = "skwal_net.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, 'templates')],
+        "DIRS": [BASE_DIR / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -186,10 +186,10 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_ROOT = BASE_DIR / "static/"
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "app_static/")
+    BASE_DIR / "app_static/"
 ]
 
 
@@ -202,3 +202,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "account.User"
 
 LOGIN_URL = "/login"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"

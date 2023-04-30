@@ -1,0 +1,71 @@
+a {
+    text-decoration: none;
+    color: var(--red);
+    transition-duration: var(--transition);
+    display: inline;
+}
+
+a:hover {
+    color: var(--accent-color);
+    /* You can barely see it but I think it looks great */
+    transform: translateX(0.001px);
+}
+
+*[href],
+*[_href] {
+    cursor: pointer;
+}
+
+i {
+    color: var(--text-color);
+    font-size: 18px;
+}
+
+hr {
+    border: none;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    margin: 10px 0;
+}
+
+*::selection {
+    background-color: var(--red);
+    color: white;
+}
+
+*::-moz-selection {
+    background-color: var(--red);
+    color: white;
+}
+
+ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+ul li::before {
+    content: '-';
+}
+
+ol li::marker,
+ul li::before {
+    margin-right: 5px;
+    text-shadow: 0 0 1px var(--accent-color), 0 0 2px var(--accent-color), 0 0 4px var(--accent-color), 0 0 5px var(--accent-color), 0 0 10px var(--accent-color);
+}
+
+ol {
+    list-style-position: inside;
+}
+
+br {
+    display: block;
+    margin: 7px 0;
+    font-size: 35%;
+}
+
+blockquote {
+    border-left: 3px solid rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    padding-left: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+}
