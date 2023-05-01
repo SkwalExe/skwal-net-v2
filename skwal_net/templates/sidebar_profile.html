@@ -13,7 +13,7 @@
             </div>
         </div>
         <div>
-            <p class="break">{{ user.bio }}</p>
+            <p class="break">{{ user.bio | default:"No bio." }}</p>
         </div>
     </div>
 {% endblock %}
