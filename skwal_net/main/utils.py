@@ -14,14 +14,14 @@ def rediverse(*args, **kwargs):
     return redirect(reverse(*args, **kwargs))
 
 
-def error_page(request, code=None, message=None):
+def error_page(request, message=None, code=None):
     """Render an error page with the given code and message"""
     return render(request, 'error.html', {
         "error_code": code,
         "error_message": message,
         "small_body": True,
         "no_sidebar": True,
-    })
+    }, status=code if type(code) == int else 500)
 
 
 def render_markdown(request, dir, body="introduction", sidebar="_sidebar"):
@@ -36,12 +36,12 @@ def render_markdown(request, dir, body="introduction", sidebar="_sidebar"):
     for dir_name in dir.strip("/").split("/"):
         subdirs = os.listdir(dir_to_check)
         if dir_name not in subdirs:
-            return error_page(request, "404", "Document not found")
+            return error_page(request, "Document not found", 404)
         dir_to_check = os.path.join(dir_to_check, dir_name)
     dir = dir_to_check
     for file_name in [body, sidebar]:
         if file_name not in os.listdir(dir):
-            return error_page(request, "404", "Document not found")
+            return error_page(request, "Document not found", 404)
     sidebar_content = open(f"{dir}/{sidebar}", "r").read()
     body_content = open(f"{dir}/{body}", "r").read()
 
