@@ -95,6 +95,7 @@ body {
         margin-left: 0 !important;
         margin-right: 0 !important;
         min-width: 100%;
+        max-width: 100%;
     }
     #page-body:not([data-inverse="true"]) #page-sidebar {
         padding-top: 20px;
