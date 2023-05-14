@@ -26,7 +26,7 @@ rm -rf skwal_net/static
 python3 skwal_net/manage.py collectstatic --noinput
 
 # set permissions
-sudo chown -R www-data:www-data .
+sudo chown -R skwal:www-data .
 sudo chmod -R 775 . # rwxrwxr-x
 
 deactivate
