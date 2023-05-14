@@ -19,11 +19,16 @@ git reset --hard HEAD
 git clean -f -d
 git pull origin main
 
-source /home/skwal/prod_env/bin/activate
+source /var/www/prod_env/bin/activate
 pip install -r requirements.txt
 python3 skwal_net/manage.py migrate
 rm -rf skwal_net/static
 python3 skwal_net/manage.py collectstatic --noinput
+
+# set permissions
+sudo chown -R www-data:www-data .
+sudo chmod -R 775 . # rwxrwxr-x
+
 deactivate
 
 echo Disabling maintenance mode
