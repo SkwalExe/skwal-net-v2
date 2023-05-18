@@ -1,34 +1,16 @@
 server {
+        # Allow connections on port 80
+        # for Onion adress
         listen 80;
-        return 301 https://$host$request_uri;
+        include /etc/nginx/skwal.conf;
 }
-
 
 server {
         listen 443 ssl;
         server_name skwal.net;
 
-        error_page 503 /maintenance.html;
+        include /etc/nginx/skwal.conf;
 
-        location /maintenance.html {
-                root /var/www/skwal-net-v2/extra/;
-                internal;
-        }
-
-        location /static/ {
-                alias /var/www/skwal-net-v2/skwal_net/static/;
-        }
-
-        location /media/ {
-                alias /var/www/skwal-net-v2/skwal_net/media/;
-        }
-
-        location / {
-                if (-f /var/www/skwal-net-v2/hooks/maintenance) {
-                        return 503;
-                }
-                proxy_pass http://127.0.0.1:8000;
-        }
         ssl_certificate /etc/letsencrypt/live/skwal.net/fullchain.pem; # managed by Certbot
         ssl_certificate_key /etc/letsencrypt/live/skwal.net/privkey.pem; # managed by Certbot
         include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
