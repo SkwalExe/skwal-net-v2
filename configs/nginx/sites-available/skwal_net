@@ -1,12 +1,21 @@
 server {
-        # Allow connections on port 80
+        # Allow local connections on port 80
         # for Onion adress
-        listen 80;
+        listen 127.0.0.1:80;
         include /etc/nginx/skwal.conf;
 }
 
 server {
+        # Redirect http to https
+        listen 80;
+        listen [::]:80;
+        server_name skwal.net;
+        return 301 https://$host$request_uri;
+}
+
+server {
         listen 443 ssl;
+        listen [::]:443 ssl;
         server_name skwal.net;
 
         include /etc/nginx/skwal.conf;
