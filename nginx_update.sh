@@ -11,5 +11,5 @@ echo Dont forget to run as root
 
 rm -f /etc/nginx/sites-enabled/default /etc/nginx/sites-available/default
 cat configs/nginx/sites-available/skwal_net > /etc/nginx/sites-available/skwal_net
-cat configs/skwal.conf > /etc/nginx/skwal.conf
+cat configs/nginx/skwal.conf > /etc/nginx/skwal.conf
 ln -s /etc/nginx/sites-available/skwal_net /etc/nginx/sites-enabled/skwal_net
