@@ -10,6 +10,8 @@ def home(request):
             HomeNavButton(),
             AccountNavButton()
             if request.user.is_authenticated else
-            LoginNavButton()
+            LoginNavButton(), 
+            OnionSiteNavButton(), 
+            BlogNavButton()
         ]
     })

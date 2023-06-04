@@ -18,3 +18,11 @@ class AccountNavButton(NavButton):
 class LoginNavButton(NavButton):
     def __init__(self):
         super().__init__("/login", "Login", "fa fa-sign-in-alt")
+
+class OnionSiteNavButton(NavButton):
+    def __init__(self):
+        super().__init__("http://h452fxjm2mv44hqytxahde4kjgg5tlbgd2un4yiqcfk3s35c2w63uryd.onion", "Tor Onion Site", "fa fa-globe")
+
+class BlogNavButton(NavButton):
+    def __init__(self):
+        super().__init__("https://blog.skwal.net", "My Blog (fr)", "fa fa-book")
