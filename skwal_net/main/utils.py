@@ -3,7 +3,25 @@ import os
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.shortcuts import render
+from main.classes import *
+from django.core.mail import send_mail as _send_mail
+from django.template.loader import render_to_string
 
+
+
+def send_mail(object, template, recipients, args = {}, fail_silently=False):
+    msg_plain = render_to_string(f"email/{template}.txt", args + {
+        "object": object,
+    })
+    msg_html = render_to_string(f"email/{template}.html", args)
+    return _send_mail(
+        object, 
+        msg_plain,
+        settings.DEFAULT_FROM_EMAIL, 
+        recipients,
+        fail_silently=fail_silently,
+        html_message=msg_html
+    )
 
 def from_root(path):
     return os.path.join(settings.BASE_DIR, *path.strip("/").split("/"))
@@ -49,4 +67,14 @@ def render_markdown(request, dir, body="introduction", sidebar="_sidebar"):
         "sidebar_content": sidebar_content,
         "body_content": body_content,
         "page_title": "📜 " + " ".join(body[:-3].split("-")).title()
+    })
+
+
+def render_form(request, form):
+    return render(request, "form.html", {
+        "form": form,
+        "page_title": form.form_name or "Form",
+        "no_sidebar": True,
+        "small_body": True,
+        "nav_buttons": form.nav_buttons or [HomeNavButton()],
     })
