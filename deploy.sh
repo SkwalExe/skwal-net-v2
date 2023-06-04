@@ -23,7 +23,7 @@ git pull origin main
 
 source /var/www/prod_env/bin/activate
 sudo -u skwal pip install -r requirements.txt
-python3 skwal_net/manage.py migrate
+sudo -u skwal python3 skwal_net/manage.py migrate
 rm -rf skwal_net/static
 python3 skwal_net/manage.py collectstatic --noinput
 
