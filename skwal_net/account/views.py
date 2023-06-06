@@ -76,10 +76,21 @@ def login_(request):
 
 @login_required()
 def profile_(request, username=None):
+    # If no username is provided, redirect to the current user's profile
     if username is None:
-        rediverse("profile", args=[request.user.username])
+        return rediverse("profile", args=[request.user.username])
+    # Try to find the user by username and return a 404 if they don't exist
+    user = User.objects.filter(username=username).first()
+    if user is None:
+        return error_page(request, "The user you are looking for does not exist.", 404)
     return render(request, "account/profile.html", {
         "inverse_sidebar": True,
-        "user": request.user,
+        "user": user,
         "stylesheets": ["profile-sidebar"],
+        "nav_buttons": [HomeNavButton(), LogoutNavButton(), SettingsNavButton()],
     })
+
+
+@login_required()
+def settings_(request):
+    return error_page(request, "Settings are not yet implemented", 501)
