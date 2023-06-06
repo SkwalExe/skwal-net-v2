@@ -27,6 +27,8 @@ body {
     /* Used to center the page content */
     width: 100%;
     display: flex;
+    flex-direction: column;
+    gap: 20px;
     justify-content: center;
     padding: 50px;
 }
