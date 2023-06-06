@@ -9,7 +9,7 @@ from django.template.loader import render_to_string
 
 
 
-def send_mail(object, template, recipients, args = {}, fail_silently=False):
+def send_mail(recipient, object, template, args = {}, fail_silently=False):
     msg_plain = render_to_string(f"email/{template}.txt", args + {
         "object": object,
     })
@@ -18,7 +18,7 @@ def send_mail(object, template, recipients, args = {}, fail_silently=False):
         object, 
         msg_plain,
         settings.DEFAULT_FROM_EMAIL, 
-        recipients,
+        [recipient],
         fail_silently=fail_silently,
         html_message=msg_html
     )

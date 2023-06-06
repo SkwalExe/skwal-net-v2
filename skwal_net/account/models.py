@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-
+from main.utils import send_mail
 
 class UserManager(BaseUserManager):
     def create_user(self, username, email, password):
@@ -67,3 +67,6 @@ class User(AbstractBaseUser):
     @property
     def icon(self):
         return f"/media/icons/{self.icon_filename}?v={self.icon_version}"
+
+    def send_mail(self, object, template, args, fail_silently=False):
+        return send_mail(self.email, object, template, args, fail_silently=fail_silently)
