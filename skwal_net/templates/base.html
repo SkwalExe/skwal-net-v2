@@ -45,24 +45,24 @@
     </div>
 
     <div id="page-body-container">
-        
-        {% if headers|length > 0 %}
+        <div id="page-body" {% if small_body %}data-small='true'{% endif %}>
+            {% if headers|length > 0 %}
                 {% for header in headers %}
                     {{ header | safe }}
                 {% endfor %}
-        {% endif %}
-        
-        <div id="page-body" {% if small_body %}data-small='true'{% endif %}{% if inverse_sidebar %}data-inverse='true'{% endif %}>
-            <div id="page-content">
-                {% block body %}<h1 class="box">Base template</h1>{% endblock body %}
-            </div>
-            {% if not no_sidebar  %}
-                <div id="page-sidebar">
-                    {% block sidebar %}
-                    <h1 class="box">Base template</h1>
-                    {% endblock sidebar %}
-                </div>
             {% endif %}
+            <div id="page-content-container" {% if inverse_sidebar %}data-inverse='true'{% endif %}>
+                <div id="page-content">
+                    {% block body %}<h1 class="box">Base template</h1>{% endblock body %}
+                </div>
+                {% if not no_sidebar  %}
+                    <div id="page-sidebar">
+                        {% block sidebar %}
+                        <h1 class="box">Base template</h1>
+                        {% endblock sidebar %}
+                    </div>
+                {% endif %} 
+            </div>
         </div>
     </div>
 
