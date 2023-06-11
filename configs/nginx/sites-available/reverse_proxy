@@ -1,0 +1,80 @@
+server {
+	listen [::]:80;
+	listen 80;
+	return 301 https://$host$request_uri;
+}
+
+server {
+	listen 443 ssl;
+	listen [::]:443 ssl;
+	server_name github.skwal.net;
+	include /etc/nginx/ssl.conf;
+	return 301 https://github.com/SkwalExe;
+}
+
+server { 
+	listen 443 ssl;
+	listen [::]:443 ssl;
+	server_name blog.skwal.net;
+	include /etc/nginx/ssl.conf;
+	location / {
+		proxy_pass https://192.168.1.22;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto https;
+	}
+	client_max_body_size 50m;
+}
+
+server {
+	listen 443 ssl;
+	listen [::]:443 ssl;
+	server_name mail.skwal.net;
+	include /etc/nginx/ssl.conf;
+	location / {
+		proxy_pass https://192.168.1.21;
+		proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+	}
+	client_max_body_size 100m;
+}
+
+server { 
+	listen 443 ssl;
+	listen [::]:443 ssl;
+	server_name skwal.net;
+
+	include /etc/nginx/ssl.conf;
+
+	location / {
+		proxy_pass https://192.168.1.20;
+		proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto https;
+	}
+	client_max_body_size 25m;
+}
+
+# redirect www.skwal.net request to skwal.net requests
+server {
+        listen 443 ssl;
+        listen [::]:443 ssl;
+        server_name www.skwal.net;
+	    include /etc/nginx/ssl.conf;
+
+        return 301 https://skwal.net$request_uri;
+}
+
+# server for non-defined subdomains
+# rewrite the route to https://skwal.net/unknown_subdomain
+server {
+        listen 443 ssl default_server;
+        listen [::]:443 ssl default_server;
+        server_name _;
+	    include /etc/nginx/ssl.conf;
+        return 301 https://skwal.net/unknown_subdomain/;
+}
