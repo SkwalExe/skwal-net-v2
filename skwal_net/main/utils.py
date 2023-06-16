@@ -6,13 +6,12 @@ from django.shortcuts import render
 from main.classes import *
 from django.core.mail import send_mail as _send_mail
 from django.template.loader import render_to_string
-
+import random
+import string
 
 
 def send_mail(recipient, object, template, args = {}, fail_silently=False):
-    msg_plain = render_to_string(f"email/{template}.txt", args + {
-        "object": object,
-    })
+    msg_plain = render_to_string(f"email/{template}.txt", {**args,"object": object})
     msg_html = render_to_string(f"email/{template}.html", args)
     return _send_mail(
         object, 
@@ -78,3 +77,8 @@ def render_form(request, form):
         "small_body": True,
         "nav_buttons": form.nav_buttons or [HomeNavButton()],
     })
+
+
+def generate_token():
+    """Generate a random 32-character token"""
+    return ''.join(random.choices(string.hexdigits, k=32))
