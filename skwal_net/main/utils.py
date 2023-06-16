@@ -12,7 +12,7 @@ import string
 
 def send_mail(recipient, object, template, args = {}, fail_silently=False):
     msg_plain = render_to_string(f"email/{template}.txt", {**args,"object": object})
-    msg_html = render_to_string(f"email/{template}.html", args)
+    msg_html = render_to_string(f"email/{template}.html", {**args,"object": object})
     return _send_mail(
         object, 
         msg_plain,
