@@ -1,0 +1,8 @@
+{{ object }}
+
+{% block content %}
+Email Content
+{% endblock %}
+
+Skwal Administration.
++33 9 55 70 80 52, support@skwal.net
