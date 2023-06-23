@@ -1,9 +1,11 @@
+# Redirect http traffic to https
 server {
 	listen [::]:80;
 	listen 80;
 	return 301 https://$host$request_uri;
 }
 
+# Redirect github.skwal.net to my github profile
 server {
 	listen 443 ssl;
 	listen [::]:443 ssl;
@@ -12,6 +14,23 @@ server {
 	return 301 https://github.com/SkwalExe;
 }
 
+# Pass all traffic from link.skwal.net to the shlink server
+server {
+        listen 443 ssl;
+        listen [::]:443 ssl;
+        server_name link.skwal.net;
+        
+        location / {
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   Host $host;
+            proxy_pass         https://192.168.1.24;
+        }
+
+        include /etc/nginx/ssl.conf;
+}
+
+# Pass all traffic from cloud.skwal.net to the nextcloud server
 server {
 	listen 443 ssl;
 	listen [::]:443 ssl;
@@ -41,7 +60,7 @@ server {
 	}
 }
 
-
+# Pass all traffic from blog.skwal.net to the ghost server
 server { 
 	listen 443 ssl;
 	listen [::]:443 ssl;
@@ -57,6 +76,7 @@ server {
 	client_max_body_size 50m;
 }
 
+# Pass all traffic from forum.skwal.net to the discourse server
 server { 
 	listen 443 ssl;
 	listen [::]:443 ssl;
@@ -72,6 +92,7 @@ server {
 	client_max_body_size 20m;
 }
 
+# Pass all traffic from status.skwal.net to the uptime kuma server
 server { 
 	listen 443 ssl;
 	listen [::]:443 ssl;
@@ -91,6 +112,7 @@ server {
 }
 
 
+# Pass all http traffic from mail.skwal.net to the iredmail server
 server {
 	listen 443 ssl;
 	listen [::]:443 ssl;
@@ -106,6 +128,7 @@ server {
 	client_max_body_size 100m;
 }
 
+# Pass all http traffic from skwal.net to the skwal server
 server { 
 	listen 443 ssl;
 	listen [::]:443 ssl;
@@ -134,7 +157,7 @@ server {
 }
 
 # server for non-defined subdomains
-# rewrite the route to https://skwal.net/unknown_subdomain
+# redirect to https://skwal.net/unknown_subdomain
 server {
         listen 443 ssl default_server;
         listen [::]:443 ssl default_server;
