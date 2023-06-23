@@ -14,7 +14,7 @@ server {
 
 server {
 	listen 443 ssl;
-	# No ipv6
+	listen [::]:443 ssl;
 	server_name cloud.skwal.net;
 	include /etc/nginx/ssl.conf;
 	
