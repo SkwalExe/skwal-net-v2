@@ -4,7 +4,8 @@
 # from the git repository, and then bring the
 # application back online.
 
-cd /var/www/skwal-net-v2/
+# Go to the project root
+cd $(dirname $0)/..
 
 if [ $HOSTNAME != "skwal-server" ]
 then
@@ -12,27 +13,30 @@ then
   exit 1
 fi
 
+# Enable maintenance and stop services
 touch hooks/maintenance
 sudo systemctl stop gunicorn
 echo Enabling maintenance mode
 sleep 5
 
+# Pull latest changes
 git reset --hard HEAD
 git clean -f -d
 git pull origin main
 
+# Update dependencies, database, and static files
 source /var/www/prod_env/bin/activate
 sudo -u skwal pip install -r requirements.txt
 sudo -u skwal python3 skwal_net/manage.py migrate
 rm -rf skwal_net/static
 sudo -u skwal python3 skwal_net/manage.py collectstatic --noinput
+deactivate
 
 # set permissions
 sudo chown -R skwal:www-data .
 sudo chmod -R 775 . # rwxrwxr-x
 
-deactivate
-
+# Restart services and disable maintenance mode
 echo Disabling maintenance mode
 sudo systemctl start gunicorn
 sleep 10

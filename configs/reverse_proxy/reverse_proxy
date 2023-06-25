@@ -5,6 +5,7 @@ server {
 	return 301 https://$host$request_uri;
 }
 
+
 # Redirect github.skwal.net to my github profile
 server {
 	listen 443 ssl;
