@@ -17,8 +17,8 @@ server {
 
 # Pass all traffic from link.skwal.net to the shlink server
 server {
-        listen 443 ssl;
-        listen [::]:443 ssl;
+        listen 443 ssl http2;
+        listen [::]:443 ssl http2;
         server_name link.skwal.net;
         
         location / {
@@ -35,8 +35,8 @@ server {
 
 # Pass all traffic from cloud.skwal.net to the nextcloud server
 server {
-	listen 443 ssl;
-	listen [::]:443 ssl;
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
 	server_name cloud.skwal.net;
 	include /etc/nginx/ssl.conf;
 	
@@ -65,8 +65,8 @@ server {
 
 # Pass all traffic from blog.skwal.net to the ghost server
 server { 
-	listen 443 ssl;
-	listen [::]:443 ssl;
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
 	server_name blog.skwal.net;
 	include /etc/nginx/ssl.conf;
 	location / {
@@ -81,8 +81,8 @@ server {
 
 # Pass all traffic from forum.skwal.net to the discourse server
 server { 
-	listen 443 ssl;
-	listen [::]:443 ssl;
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
 	server_name forum.skwal.net;
 	include /etc/nginx/ssl.conf;
 	location / {
@@ -97,8 +97,8 @@ server {
 
 # Pass all traffic from status.skwal.net to the uptime kuma server
 server { 
-	listen 443 ssl;
-	listen [::]:443 ssl;
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
 	server_name status.skwal.net;
 	include /etc/nginx/ssl.conf;
 	location / {
@@ -117,8 +117,8 @@ server {
 
 # Pass all http traffic from mail.skwal.net to the iredmail server
 server {
-	listen 443 ssl;
-	listen [::]:443 ssl;
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
 	server_name mail.skwal.net;
 	include /etc/nginx/ssl.conf;
 	location / {
@@ -133,8 +133,8 @@ server {
 
 # Pass all http traffic from skwal.net to the skwal server
 server { 
-	listen 443 ssl;
-	listen [::]:443 ssl;
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
 	server_name skwal.net;
 
 	include /etc/nginx/ssl.conf;
@@ -151,8 +151,8 @@ server {
 
 # redirect www.skwal.net request to skwal.net requests
 server {
-        listen 443 ssl;
-        listen [::]:443 ssl;
+        listen 443 ssl http2;
+        listen [::]:443 ssl http2;
         server_name www.skwal.net;
 	    include /etc/nginx/ssl.conf;
 
