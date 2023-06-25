@@ -8,8 +8,8 @@ server {
 
 # Redirect github.skwal.net to my github profile
 server {
-	listen 443 ssl;
-	listen [::]:443 ssl;
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
 	server_name github.skwal.net;
 	include /etc/nginx/ssl.conf;
 	return 301 https://github.com/SkwalExe;
