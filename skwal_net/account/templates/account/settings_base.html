@@ -1,0 +1,7 @@
+{% extends 'form.html' %}
+{% load static %}
+{% load markdownify %}
+
+{% block sidebar %}
+    {{ option_list | safe }}
+{% endblock %}

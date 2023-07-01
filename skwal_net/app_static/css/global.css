@@ -1,6 +1,6 @@
 a {
     text-decoration: none;
-    color: var(--red);
+    color: var(--text-alternative);
     transition-duration: var(--transition);
     display: inline;
 }
@@ -17,7 +17,6 @@ a:hover {
 }
 
 i {
-    color: var(--text-color);
     font-size: 18px;
 }
 

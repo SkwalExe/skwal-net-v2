@@ -1,0 +1,7 @@
+{% extends "email/base.html" %}
+
+{% block content %}
+Hello {{user.username}}, please open the link below to change your email address:
+
+{{url}}
+{% endblock %}

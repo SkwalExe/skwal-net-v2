@@ -14,9 +14,9 @@ def send_mail(recipient, object, template, args = {}, fail_silently=False):
     msg_plain = render_to_string(f"email/{template}.txt", {**args,"object": object})
     msg_html = render_to_string(f"email/{template}.html", {**args,"object": object})
     return _send_mail(
-        object, 
+        object,
         msg_plain,
-        settings.DEFAULT_FROM_EMAIL, 
+        settings.DEFAULT_FROM_EMAIL,
         [recipient],
         fail_silently=fail_silently,
         html_message=msg_html
@@ -79,6 +79,6 @@ def render_form(request, form):
     })
 
 
-def generate_token():
-    """Generate a random 32-character token"""
-    return ''.join(random.choices(string.hexdigits, k=32))
+def generate_token(len=64):
+    """Generate a random len-character token"""
+    return ''.join(random.choices(string.ascii_letters + string.digits, k=len))

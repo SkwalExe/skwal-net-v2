@@ -1,0 +1,9 @@
+{% extends "email/base.html" %}
+
+{% block object %}Change your email address.{% endblock %}
+
+{% block content %}
+Hello {{user.username}}, please open the link below to confirm the deletion of your account:
+<br />
+<a href="{{url}}">{{url}}</a>
+{% endblock %}

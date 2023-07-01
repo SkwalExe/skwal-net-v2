@@ -1,0 +1,10 @@
+:root {
+    --accent-color: #e67286;
+    --color1: #181B23;
+    --color2: #272c38;
+    --text-color: #fff;
+    --text-alternative: #d4bbbb;
+    --text-secondary: rgba(255, 255, 255, 0.5);
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+

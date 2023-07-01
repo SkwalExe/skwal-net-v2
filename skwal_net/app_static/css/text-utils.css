@@ -34,7 +34,7 @@ h4.secondary,
 h5.secondary,
 h6.secondary,
 span.secondary {
-    color: rgba(255, 255, 255, .4);
+    color: var(--text-secondary);
 }
 
 p.secondary-bg,
@@ -45,7 +45,7 @@ h4.secondary-bg,
 h5.secondary-bg,
 h6.secondary-bg,
 span.secondary-bg {
-    background-color: rgba(255, 255, 255, .4);
+    background-color: var(--text-secondary);
     color: var(--text-color);
     padding: 5px 10px;
 }
