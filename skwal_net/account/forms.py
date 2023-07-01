@@ -1,9 +1,10 @@
-from .models import *
+from account.models import *
 from django.forms import ModelForm, PasswordInput
 from django.contrib.auth.forms import UserCreationForm
 from main.classes import *
-from .utils import *
+from account.utils import *
 from django.contrib.auth import authenticate
+from . import settings_forms
 
 
 class RegisterForm(UserCreationForm):

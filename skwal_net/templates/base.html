@@ -10,7 +10,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='icon' type='image/ico' href="{% vstatic 'img/favicon.ico' %}">
 
-    <link rel="stylesheet" href="{% vstatic 'css/vars.css' %}">
+    <!-- If user is logged in load custom theme -->
+    {% if user.is_authenticated %}
+        <link id="theme" rel="stylesheet" href="{% vstatic 'css/themes/'|add:user.theme|add:'.css' %}">
+    {% else %}
+        <link id="theme" rel="stylesheet" href="{% vstatic 'css/themes/default.css' %}">
+    {% endif %}
+
     <link rel="stylesheet" href="{% vstatic 'css/base.css' %}">
     <link rel="stylesheet" href="{% vstatic 'css/global.css' %}">
     <link rel="stylesheet" href="{% vstatic 'css/navbar.css' %}">
@@ -24,6 +30,8 @@
     {% for stylesheet in stylesheets %}
         <link rel="stylesheet" href="/static/css/{{ stylesheet }}.css">
     {% endfor %}
+
+
 
 </head>
 
@@ -61,7 +69,7 @@
                         <h1 class="box">Base template</h1>
                         {% endblock sidebar %}
                     </div>
-                {% endif %} 
+                {% endif %}
             </div>
         </div>
     </div>

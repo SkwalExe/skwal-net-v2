@@ -1,0 +1,4 @@
+You can create your own themes here, by creating a
+new stylesheet and overwriting properties of default.css.
+
+Do not forget to reference your theme in main/themes.py!

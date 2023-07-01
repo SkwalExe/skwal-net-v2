@@ -8,4 +8,5 @@ urlpatterns = [
     path("profile/@<str:username>/", views.profile_, name="profile"),
     path("logout/", views.logout_, name="logout"),
     path("settings/", views.settings_, name="settings"),
+    path("settings/<str:section>/", views.settings_, name="settings"),
 ]

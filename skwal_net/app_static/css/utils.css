@@ -3,6 +3,10 @@
     gap: 5px;
 }
 
+.no-gap {
+    gap: 0 !important;
+}
+
 .gap-10 {
     gap: 10px;
 }
@@ -63,6 +67,7 @@
     padding: 15px;
     border-radius: var(--radius);
     border: 1px solid var(--border-color);
+    width: 100%;
 }
 
 hr.no-margin {
@@ -119,4 +124,23 @@ hr.no-margin {
 .icon-container.small {
     height: 30px;
     width: 30px;
+}
+
+.option-list > * {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.option-list > *:last-child {
+    border-bottom: none;
+}
+
+.option-list {
+    padding: 0 !important;
+}
+.option-list > .active {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+
+    pointer-events: none;
 }

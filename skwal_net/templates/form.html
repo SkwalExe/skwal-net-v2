@@ -14,8 +14,24 @@
                     {% for error in field.errors %}
                         <p class="error">{{ error }}</p>
                     {% endfor %}
-                    <input {% for attr in field.field.widget.attrs.items %}{{ attr.0 }}="{{ attr.1 }}" {% endfor %}
-                     type="{{ field.field.widget.input_type }}" name="{{ field.name }}" value="{{ field.value | default_if_none:'' }}">
+
+                    <!-- Check if field is input or select element -->
+                    {% if field.field.widget.input_type == 'select' %}
+                        <select {% for attr in field.field.widget.attrs.items %}{{ attr.0 }}="{{ attr.1 }}" {% endfor %}
+                                name="{{ field.name }}">
+                            {% for choice in field.field.choices %}
+                                <option value="{{ choice.0 }}" {% if choice.0 == field.value %}selected{% endif %}>
+                                    {{ choice.1 }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    {% else %}
+                        <input {% for attr in field.field.widget.attrs.items %}{{ attr.0 }}="{{ attr.1 }}" {% endfor %}
+                        type="{{ field.field.widget.input_type }}" name="{{ field.name }}" value="{{ field.value | default_if_none:'' }}">
+                    {% endif %}
+
+
+
                 </div>
             {% endfor %}
             <button type="submit">{{form.submit_button|default:"submit"}}</button>
