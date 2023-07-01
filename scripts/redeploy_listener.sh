@@ -9,7 +9,7 @@ while true; do
   if [ -f hooks/redeploy ]; then
     echo Redeploying...
     rm -f hooks/redeploy
-    ./deploy.sh
+    ./scripts/deploy.sh
   fi
   sleep 5
 done
