@@ -12,7 +12,7 @@
 
 
 
-    <link id="theme" rel="stylesheet" href="{% vstatic 'css/themes/default.css' %}">
+    <link rel="stylesheet" href="{% vstatic 'css/themes/default.css' %}">
 
     <!-- If user is logged in and not default theme load custom theme -->
     {% if user.is_authenticated and user.theme != 'default' %}
