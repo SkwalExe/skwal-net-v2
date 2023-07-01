@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <h1 class="box center">Credits and thanks</h1>
+    <div class="box">
+        <div class="flex v-center gap-10">
+            <img src="{% vstatic 'img/cherry_cursor.png' %}" alt="cherry cursor" height="50px">
+            <h2>Cherry Cursor made by <a href="https://instagram.com/foxglove.luv">Lilou Foster</a></h2>
+        </div>
+        <hr>
+        <h2>Some open source projects we use :</h2>
+        <div class="flex h-center wrap gap-10" id="open-source-projects">
+            <img src="/static/img/logo.png" />
+            <img src="/static/img/logo-nginx.png" />
+            <img src="/static/img/logo-ubuntu.png" />
+            <img src="/static/img/logo-django.png" />
+            <img src="/static/img/logo-gunicorn.png" />
+            <img src="/static/img/logo-linux.jpg" />
+            <img src="/static/img/logo-dovecot.png" />
+            <img src="/static/img/logo-fossbilling.png" />
+            <img src="/static/img/logo-ghost.png" />
+            <img src="/static/img/logo-hestia.png" />
+            <img src="/static/img/logo-iredmail.png" />
+            <img src="/static/img/logo-openvpn.png" />
+            <img src="/static/img/logo-postfix.png" />
+            <img src="/static/img/logo-roundcube.png" />
+            <img src="/static/img/logo-so.png" />
+            <img src="/static/img/logo-xen.png" />
+            <img src="/static/img/logo-xoce.png" />
+        </div>
+    </div>
+{% endblock %}

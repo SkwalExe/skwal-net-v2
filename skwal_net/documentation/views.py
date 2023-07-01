@@ -21,4 +21,7 @@ def cookies(request):
 
 
 def credits(request):
-    return render_markdown(request, "legal", "credits")
+    return render(request, "documentation/credits.html", {
+        "no_sidebar": True,
+        "stylesheets": ["credits"],
+    })
