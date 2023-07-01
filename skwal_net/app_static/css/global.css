@@ -22,7 +22,7 @@ i {
 
 hr {
     border: none;
-    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    border-top: 2px solid var(--hr-color);
     margin: 10px 0;
 }
 

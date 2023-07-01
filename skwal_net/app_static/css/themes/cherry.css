@@ -6,4 +6,10 @@
     --text-alternative: #f46060;
     --text-secondary: #ed7e7ed6;
     --border-color: #f3c8c4;
+    --hr-color: rgba(0, 0, 0, 0.2);
+
+}
+
+body {
+    cursor: url(/static/img/cherry_cursor.png), auto;
 }
