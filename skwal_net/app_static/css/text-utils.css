@@ -26,6 +26,19 @@ span.error-bg {
     padding: 5px 10px;
 }
 
+p.info-bg,
+h1.info-bg,
+h2.info-bg,
+h3.info-bg,
+h4.info-bg,
+h5.info-bg,
+h6.info-bg,
+span.info-bg {
+    background-color: var(--blue);
+    color: white;
+    padding: 5px 10px;
+}
+
 p.secondary,
 h1.secondary,
 h2.secondary,

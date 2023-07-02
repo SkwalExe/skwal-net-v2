@@ -32,6 +32,9 @@
                         <input {% for attr in field.field.widget.attrs.items %}{{ attr.0 }}="{{ attr.1 }}" {% endfor %}
                         type="{{ field.field.widget.input_type }}" name="{{ field.name }}" value="{{ field.value | default_if_none:'' }}">
                     {% endif %}
+                    {% if field.field.help_text %}
+                        <p class="info-bg">{{ field.field.help_text }}</p>
+                    {% endif %}
 
 
                 </div>
