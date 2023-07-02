@@ -9,7 +9,7 @@ form {
     padding: 0;
 }
 
-input, select {
+input, select, textarea {
     border: 1px solid var(--accent-color);
     background-color: var(--color1);
     border-radius: var(--radius);
@@ -17,6 +17,15 @@ input, select {
     padding: 5px;
     height: 30px;
     width: 100%;
+}
+
+textarea {
+    height: 200px;
+    resize: vertical;
+    font-weight: 800;
+    padding: 10px;
+    white-space: nowrap;
+    font-size: 17px;
 }
 
 select {

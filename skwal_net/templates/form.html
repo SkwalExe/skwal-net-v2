@@ -3,7 +3,7 @@
 {% block body %}
     <h1 class="box center">{{ form.form_name }} 📜</h1>
     <div class="box">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {% for error in form.non_field_errors %}
                 <p class="error-bg">{{ error }}</p>
@@ -15,7 +15,7 @@
                         <p class="error">{{ error }}</p>
                     {% endfor %}
 
-                    <!-- Check if field is input or select element -->
+                    <!-- Check if field is input, textarea or select element -->
                     {% if field.field.widget.input_type == 'select' %}
                         <select {% for attr in field.field.widget.attrs.items %}{{ attr.0 }}="{{ attr.1 }}" {% endfor %}
                                 name="{{ field.name }}">
@@ -25,11 +25,13 @@
                                 </option>
                             {% endfor %}
                         </select>
+                    {% elif field.field.widget.input_type == 'textarea' %}
+                        <textarea {% for attr in field.field.widget.attrs.items %}{{ attr.0 }}="{{ attr.1 }}" {% endfor %}
+                        name="{{ field.name }}">{{ field.value | default_if_none:'' }}</textarea>
                     {% else %}
                         <input {% for attr in field.field.widget.attrs.items %}{{ attr.0 }}="{{ attr.1 }}" {% endfor %}
                         type="{{ field.field.widget.input_type }}" name="{{ field.name }}" value="{{ field.value | default_if_none:'' }}">
                     {% endif %}
-
 
 
                 </div>
