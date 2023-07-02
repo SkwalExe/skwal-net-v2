@@ -20,9 +20,9 @@ echo Enabling maintenance mode
 sleep 5
 
 # Pull latest changes
-git reset --hard HEAD
-git clean -f -d
-git pull origin main
+sudo -u skwal git reset --hard HEAD
+sudo -u skwal git clean -f -d
+sudo -u skwal git pull origin main
 
 # Update dependencies, database, and static files
 source /var/www/prod_env/bin/activate
