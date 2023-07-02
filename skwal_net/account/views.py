@@ -168,11 +168,9 @@ def settings_(request, section=None):
     setting = settings_forms[section]
 
     # Only allow logged in users to access settings that doesn't have the "no_login_required" property
-    if "no_login_required" in setting and not setting["no_login_required"] and not request.user.is_authenticated:
+    if (not "no_login_required" in setting or not setting["no_login_required"]) and not request.user.is_authenticated:
         return rediverse("login")
-    
-    print(request.POST)
-    print(request.FILES)
+
 
 
     # Parse POST data if any; otherwise, create a new forms
