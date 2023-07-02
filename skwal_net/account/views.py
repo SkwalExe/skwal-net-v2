@@ -7,6 +7,7 @@ import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from main.themes import themes
+from skwal_net.settings import BASE_DIR
 
 def logout_(request):
     logout(request)
@@ -103,6 +104,18 @@ settings_forms = {
         "model_form": True,
         "visible": True
     },
+    "bio_and_readme": {
+        "form": settings_forms.BioAndReadmeForm,
+        "icon": "fa fa-user",
+        "model_form": True,
+        "visible": True
+    },
+    "avatar": {
+        "form": settings_forms.AvatarChangeForm,
+        "icon": "fa fa-user",
+        "model_form": False,
+        "visible": True
+    },
     "email": {
         "form": settings_forms.SendEmailChangeLinkForm,
         "icon": "fa fa-envelope",
@@ -157,12 +170,16 @@ def settings_(request, section=None):
     # Only allow logged in users to access settings that doesn't have the "no_login_required" property
     if "no_login_required" in setting and not setting["no_login_required"] and not request.user.is_authenticated:
         return rediverse("login")
+    
+    print(request.POST)
+    print(request.FILES)
+
 
     # Parse POST data if any; otherwise, create a new forms
     if setting["model_form"] and request.user.is_authenticated:
-        form = setting["form"](request.POST or None, instance=request.user)
+        form = setting["form"](request.POST or None, request.FILES or None, instance=request.user)
     else:
-        form =  setting["form"](request.POST or None)
+        form =  setting["form"](request.POST or None, request.FILES or None)
 
 
     # Check token
@@ -224,6 +241,29 @@ def settings_(request, section=None):
                     form.errors.pop("theme", None)
             case "logout_sessions":
                 request.user.logout_sessions()
+            case "bio_and_readme":
+                if form.is_valid():
+                    form.save()
+                    return rediverse("profile", args=[request.user.username])
+            case "avatar":
+                if form.is_valid():
+                    extension = request.FILES["avatar"].name.split(".")[-1]
+                    temp_path = request.FILES["avatar"].temporary_file_path()
+                    
+                    # Delete previous avatar
+                    if request.user.icon_filename != "default.png":
+                        os.remove(f"{BASE_DIR}/media/icons/{request.user.icon_filename}")
+                    
+                    request.user.icon_default = False
+                    request.user.icon_version += 1
+                    request.user.icon_filename = f"{request.user.id}.{extension}"
+                    
+                    # Move new avatar
+                    os.rename(temp_path, f"{BASE_DIR}/media/icons/{request.user.icon_filename}")
+
+                    request.user.save()
+                    return rediverse("profile", args=[request.user.username])
+
 
     # Render form
     return render(request, "account/settings_base.html", {
