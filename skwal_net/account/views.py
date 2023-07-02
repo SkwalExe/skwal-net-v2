@@ -251,7 +251,7 @@ def settings_(request, section=None):
                     temp_path = request.FILES["avatar"].temporary_file_path()
                     
                     # Delete previous avatar
-                    if request.user.icon_filename != "default.png":
+                    if request.user.icon_filename != "default.gif":
                         os.remove(f"{BASE_DIR}/media/icons/{request.user.icon_filename}")
                     
                     request.user.icon_default = False
