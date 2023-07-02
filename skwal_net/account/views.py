@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from main.themes import themes
 from skwal_net.settings import BASE_DIR
+from shutil import copyfile
 
 def logout_(request):
     logout(request)
@@ -257,7 +258,7 @@ def settings_(request, section=None):
                     request.user.icon_filename = f"{request.user.id}.{extension}"
                     
                     # Move new avatar
-                    os.rename(temp_path, f"{BASE_DIR}/media/icons/{request.user.icon_filename}")
+                    copyfile(temp_path, f"{BASE_DIR}/media/icons/{request.user.icon_filename}")
 
                     request.user.save()
                     return rediverse("profile", args=[request.user.username])
