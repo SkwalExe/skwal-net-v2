@@ -226,8 +226,13 @@ def settings_(request, section=None):
                 request.user.send_email_change_link()
                 return rediverse("profile", args=[request.user.username])
             case "password":
-                request.user.send_password_reset_link()
-                return rediverse("profile", args=[request.user.username])
+                if form.is_valid():
+                    user = User.objects.filter(email=form.cleaned_data["email"]).first()
+                    if user is not None:
+                        user.send_password_reset_link()
+                        
+                    form.fields["email"].help_text = "An email with a password reset link has been sent to the email address you provided if it exists in our database."
+
             case "delete":
                 request.user.send_account_deletion_link()
                 return rediverse("profile", args=[request.user.username])

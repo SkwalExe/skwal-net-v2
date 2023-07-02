@@ -1,5 +1,5 @@
 from account.models import *
-from django.forms import ModelForm, Form, CharField, ImageField
+from django.forms import ModelForm, Form, CharField, ImageField, EmailField
 from main.classes import *
 from account.utils import *
 
@@ -72,6 +72,8 @@ class SendPasswordResetLinkForm(Form):
     form_name = "Password"
     submit_button = "Send password reset link"
     form_disclaimer = "You will be sent an email with a link to reset your password 🔐"
+
+    email = EmailField()
 
 class SendAccountDeletionLinkForm(Form):
     form_name = "Delete Account"

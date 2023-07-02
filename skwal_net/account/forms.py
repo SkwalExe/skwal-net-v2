@@ -64,7 +64,7 @@ class LoginForm(ModelForm):
     submit_button = "Login"
     form_links = [
         NavButton("/register", "Register", "fa fa-user-plus"),
-        NavButton("/reset", "Reset Password", "fa fa-key")
+        NavButton("/settings/password/", "Reset Password", "fa fa-key")
     ]
 
     class Meta:
