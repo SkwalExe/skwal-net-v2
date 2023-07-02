@@ -1,3 +1,9 @@
 #open-source-projects img {
-    max-height: 50px;
+    height: 60px;
+}
+
+#open-source-projects {
+    background-color: white;
+    padding: 20px;
+    margin-top: 10px;
 }
