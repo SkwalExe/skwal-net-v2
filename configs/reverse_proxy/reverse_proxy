@@ -15,6 +15,38 @@ server {
 	return 301 https://github.com/SkwalExe;
 }
 
+# Pass all traffic from xoce.skwal.net to the xoce instance
+server { 
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
+	server_name xoce.skwal.net;
+	
+	location / {
+		# Add some headers
+		proxy_set_header        Host $host;
+		proxy_set_header        X-Real-IP $remote_addr;
+		proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header        X-Forwarded-Proto $scheme;
+
+		# Proxy configuration
+		proxy_pass https://192.168.1.4/;
+		proxy_http_version 1.1;
+		proxy_set_header Connection "upgrade";
+		proxy_set_header Upgrade $http_upgrade;
+
+		proxy_redirect default;
+		# Issue https://github.com/vatesfr/xen-orchestra/issues/1471
+		proxy_read_timeout 1800; # Error will be only every 30m
+
+		# For the VM import feature, this size must be larger than the file we want to upload.
+		# Without a proper value, nginx will have error "client intended to send too large body"
+		client_max_body_size 4G;
+	}
+
+        include /etc/nginx/ssl.conf;
+}
+
+
 # Pass all traffic from link.skwal.net to the shlink server
 server {
         listen 443 ssl http2;
