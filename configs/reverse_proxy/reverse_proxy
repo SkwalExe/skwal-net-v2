@@ -1,49 +1,81 @@
+server {
+    listen [::]:80;
+    listen 80;
+    server_name test.skwal.net;
+    location / {
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Scheme $scheme;
+
+        proxy_set_header   Host $host;
+        proxy_pass         http://192.168.1.53;
+    }
+}
+
+server {
+    listen [::]:443;
+    listen 443;
+    server_name test.skwal.net;
+    location / {
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Scheme $scheme;
+
+        proxy_set_header   Host $host;
+        proxy_pass         https://192.168.1.53;
+    }
+
+    include /etc/nginx/ssl.conf;
+}
+
+
+
 # Redirect http traffic to https
 server {
-	listen [::]:80;
-	listen 80;
-	return 301 https://$host$request_uri;
+    listen [::]:80;
+    listen 80;
+    return 301 https://$host$request_uri;
 }
 
 
 # Redirect github.skwal.net to my github profile
 server {
-	listen 443 ssl http2;
-	listen [::]:443 ssl http2;
-	server_name github.skwal.net;
-	include /etc/nginx/ssl.conf;
-	return 301 https://github.com/SkwalExe;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name github.skwal.net;
+    include /etc/nginx/ssl.conf;
+    return 301 https://github.com/SkwalExe;
 }
 
 # Pass all traffic from xoce.skwal.net to the xoce instance
 server { 
-	listen 443 ssl http2;
-	listen [::]:443 ssl http2;
-	server_name xoce.skwal.net;
-	
-	location / {
-		# Add some headers
-		proxy_set_header        Host $host;
-		proxy_set_header        X-Real-IP $remote_addr;
-		proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-		proxy_set_header        X-Forwarded-Proto $scheme;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name xoce.skwal.net;
+    
+    location / {
+        # Add some headers
+        proxy_set_header        Host $host;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        X-Forwarded-Proto $scheme;
 
-		# Proxy configuration
-		proxy_pass https://192.168.1.4/;
-		proxy_http_version 1.1;
-		proxy_set_header Connection "upgrade";
-		proxy_set_header Upgrade $http_upgrade;
+        # Proxy configuration
+        proxy_pass https://192.168.1.4/;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Upgrade $http_upgrade;
 
-		proxy_redirect default;
-		# Issue https://github.com/vatesfr/xen-orchestra/issues/1471
-		proxy_read_timeout 1800; # Error will be only every 30m
+        proxy_redirect default;
+        # Issue https://github.com/vatesfr/xen-orchestra/issues/1471
+        proxy_read_timeout 1800; # Error will be only every 30m
 
-		# For the VM import feature, this size must be larger than the file we want to upload.
-		# Without a proper value, nginx will have error "client intended to send too large body"
-		client_max_body_size 4G;
-	}
+        # For the VM import feature, this size must be larger than the file we want to upload.
+        # Without a proper value, nginx will have error "client intended to send too large body"
+        client_max_body_size 4G;
+    }
 
-        include /etc/nginx/ssl.conf;
+    include /etc/nginx/ssl.conf;
 }
 
 
@@ -52,6 +84,10 @@ server {
         listen 443 ssl http2;
         listen [::]:443 ssl http2;
         server_name link.skwal.net;
+    server_name xn--qv8h.skwal.net;
+    server_name xn--nt8h.skwal.net;
+    server_name xn--xy8h.skwal.net;
+    server_name xn--138h.skwal.net;
         
         location / {
             proxy_set_header   X-Real-IP $remote_addr;
@@ -67,136 +103,136 @@ server {
 
 # Pass all traffic from cloud.skwal.net to the nextcloud server
 server {
-	listen 443 ssl http2;
-	listen [::]:443 ssl http2;
-	server_name cloud.skwal.net;
-	include /etc/nginx/ssl.conf;
-	
-	location / {
-		proxy_pass https://192.168.1.27;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name cloud.skwal.net;
+    include /etc/nginx/ssl.conf;
+    
+    location / {
+        proxy_pass https://192.168.1.27;
 
-		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-		proxy_set_header X-Forwarded-Port $server_port;
-		proxy_set_header X-Forwarded-Scheme $scheme;
-		proxy_set_header X-Forwarded-Proto $scheme;
-		proxy_set_header X-Real-IP $remote_addr;
-		proxy_set_header Accept-Encoding "";
-		proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Port $server_port;
+        proxy_set_header X-Forwarded-Scheme $scheme;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Accept-Encoding "";
+        proxy_set_header Host $host;
 
-		client_body_buffer_size 512k;
-		proxy_read_timeout 86400s;
-		client_max_body_size 0;
+        client_body_buffer_size 512k;
+        proxy_read_timeout 86400s;
+        client_max_body_size 0;
 
-		# Websocket
-		proxy_http_version 1.1;
-		proxy_set_header Upgrade $http_upgrade;
-		proxy_set_header Connection "upgrade";
+        # Websocket
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
 
-	}
+    }
 }
 
 # Pass all traffic from blog.skwal.net to the ghost server
 server { 
-	listen 443 ssl http2;
-	listen [::]:443 ssl http2;
-	server_name blog.skwal.net;
-	include /etc/nginx/ssl.conf;
-	location / {
-		proxy_pass https://192.168.1.22;
-		proxy_set_header Host $host;
-		proxy_set_header X-Real-IP $remote_addr;
-		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-		proxy_set_header X-Forwarded-Proto https;
-	}
-	client_max_body_size 50m;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name blog.skwal.net;
+    include /etc/nginx/ssl.conf;
+    location / {
+        proxy_pass https://192.168.1.22;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+    client_max_body_size 50m;
 }
 
 # Pass all traffic from forum.skwal.net to the discourse server
 server { 
-	listen 443 ssl http2;
-	listen [::]:443 ssl http2;
-	server_name forum.skwal.net;
-	include /etc/nginx/ssl.conf;
-	location / {
-		proxy_pass https://192.168.1.25;
-		proxy_set_header Host $host;
-		proxy_set_header X-Real-IP $remote_addr;
-		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-		proxy_set_header X-Forwarded-Proto https;
-	}
-	client_max_body_size 20m;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name forum.skwal.net;
+    include /etc/nginx/ssl.conf;
+    location / {
+        proxy_pass https://192.168.1.25;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+    client_max_body_size 20m;
 }
 
 # Pass all traffic from status.skwal.net to the uptime kuma server
 server { 
-	listen 443 ssl http2;
-	listen [::]:443 ssl http2;
-	server_name status.skwal.net;
-	include /etc/nginx/ssl.conf;
-	location / {
-		proxy_pass https://192.168.1.26;
-		proxy_set_header Host $host;
-		proxy_set_header X-Real-IP $remote_addr;
-		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-		proxy_set_header X-Forwarded-Proto https;
-		# Support websockets
-		proxy_set_header   Upgrade $http_upgrade;
-		proxy_set_header   Connection "upgrade";
-	}
-	client_max_body_size 20m;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name status.skwal.net;
+    include /etc/nginx/ssl.conf;
+    location / {
+        proxy_pass https://192.168.1.26;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+        # Support websockets
+        proxy_set_header   Upgrade $http_upgrade;
+        proxy_set_header   Connection "upgrade";
+    }
+    client_max_body_size 20m;
 }
 
 
 # Pass all http traffic from mail.skwal.net to the iredmail server
 server {
-	listen 443 ssl http2;
-	listen [::]:443 ssl http2;
-	server_name mail.skwal.net;
-	include /etc/nginx/ssl.conf;
-	location / {
-		proxy_pass https://192.168.1.21;
-		proxy_set_header Host $host;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name mail.skwal.net;
+    include /etc/nginx/ssl.conf;
+    location / {
+        proxy_pass https://192.168.1.21;
+        proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto https;
-	}
-	client_max_body_size 100m;
+    }
+    client_max_body_size 100m;
 }
 
 # Pass all http traffic from skwal.net to the skwal server
 server { 
-	listen 443 ssl http2;
-	listen [::]:443 ssl http2;
-	server_name skwal.net;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name skwal.net projects.skwal.net portfolio.skwal.net;
 
-	include /etc/nginx/ssl.conf;
+    include /etc/nginx/ssl.conf;
 
-	location / {
-		proxy_pass https://192.168.1.20;
-		proxy_set_header Host $host;
+    location / {
+        proxy_pass https://192.168.1.20;
+        proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto https;
-	}
-	client_max_body_size 25m;
+    }
+    client_max_body_size 5m;
 }
 
 # redirect www.skwal.net request to skwal.net requests
 server {
-        listen 443 ssl http2;
-        listen [::]:443 ssl http2;
-        server_name www.skwal.net;
-	    include /etc/nginx/ssl.conf;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name www.skwal.net;
+    include /etc/nginx/ssl.conf;
 
-        return 301 https://skwal.net$request_uri;
+    return 301 https://skwal.net$request_uri;
 }
 
 # server for non-defined subdomains
 # redirect to https://skwal.net/unknown_subdomain
 server {
-        listen 443 ssl default_server;
-        listen [::]:443 ssl default_server;
-        server_name _;
-	    include /etc/nginx/ssl.conf;
-        return 301 https://skwal.net/unknown_subdomain/;
+    listen 443 ssl default_server;
+    listen [::]:443 ssl default_server;
+    server_name _;
+    include /etc/nginx/ssl.conf;
+    return 301 https://skwal.net/unknown_subdomain/;
 }
